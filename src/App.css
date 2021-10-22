@@ -5,6 +5,13 @@
   width: 50%;
 }
 
+.option {
+  display: flex;
+  margin: 50px auto;
+  width: 80%;
+  justify-content: space-between;
+}
+
 .form-margin {
   margin-top: 20px;
 }
@@ -35,3 +42,4 @@ a {
 ul {
   padding-inline-start: 20px;
 }
+

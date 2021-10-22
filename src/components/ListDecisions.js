@@ -1,8 +1,20 @@
 import React from 'react'
+import { Box, Typography, Button} from '@mui/material'
+import { Link } from 'react-router-dom'
+
 
 const ListDecisions = () => {
   return (
-    <h1>Your saved decisions appear here</h1>
+    <div className="option">
+      <Typography>Your saved decisions appear below:</Typography>
+
+      <Link to="/add-decision">
+      <Button variant="contained">
+        + Add New Decision
+      </Button>
+      </Link>
+  
+    </div>
   )
 }
 

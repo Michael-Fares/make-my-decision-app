@@ -12,7 +12,7 @@ const Login = (props) => {
   return (
       <form className="form">
           <Box mb={2}>
-            <Typography variant="h4">Welcome back!</Typography>
+            <Typography variant="h6">Welcome! Please Login</Typography>
           </Box>
           
         <Stack spacing={1}>

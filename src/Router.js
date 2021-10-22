@@ -6,6 +6,11 @@ import SignUp from './components/SignUp'
 import Login from './components/Login'
 import About from './components/About'
 import ListDecisions from './components/ListDecisions'
+import AddDecision from './components/AddDecision'
+import ListCritiera from './components/ListCriteria'
+import AddCriteria from './components/AddCriteria'
+import ListOptions from './components/ListOptions'
+import AddOption from './components/AddOption'
 
 
 
@@ -43,7 +48,9 @@ const Router = (window) => {
             <Route path="/signup" component={SignUp} />
             {/* Protect this route */}
             <Route path="/decisions" component={ListDecisions} />
-            
+            <Route path="/add-decision" component={AddDecision} />
+            <Route path="/add-critiera" component={AddCriteria} />
+            <Route path="/add-option" component={AddOption} />
         </Switch>
     );
 };
