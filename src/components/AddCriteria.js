@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Button,
   TextField,
@@ -11,14 +11,24 @@ import {
 
  import RadioCritiera from './RadioCritiera';
 
+
+
 const AddCriteria = (props) => {
     const location = useLocation()
-    const id = props.match.params.id
-    const decisions = props.location.state.decisions
-    const currentDecision = decisions.find(decision => decision.decision_id == id)
+    const currentDecision = props.location.state.currentDecision
     console.log('current decision', currentDecision)
-    console.log('props', props)
-    console.log('id', id)
+
+    const [criterion, setCriterion] = useState({
+      criterion_text: "",
+      criterion_importance: null
+    })
+   
+    const handleChange = (e) => {
+      e.preventDefault()
+      const newCriterion = { ... criterion }
+      newCriterion[e.target.name] = e.target.value
+      setCriterion(newCriterion)
+    }
   
   return (
     <>
@@ -31,17 +41,16 @@ const AddCriteria = (props) => {
           </Box>
           
         <Stack spacing={3}>
-        <TextField required="true" placeholder="Type Anything!" label="Type Anything!"/>
+        <TextField name="criterion_text" value={criterion.criterion_text} required="true" placeholder="Type Anything!" label="Type Anything!" onChange={(e)=>{handleChange(e)}}/>
         <Box mb={2}>
             <Typography variant="h6">How Important Is this Critiera To You?</Typography>
           </Box>
-            <RadioCritiera/>
+            <RadioCritiera value={criterion.criterion_importance} name="criterion_importance" onChange={(e)=>{handleChange(e)}} />
             <Button fullWidth = {true} 
             variant="contained"
             className="form-margin"
             onClick={()=>{
               console.log('props', props)
-              console.log('id', id)
             }}
             >
             Add

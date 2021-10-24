@@ -57,7 +57,7 @@ const ListDecisions = () => {
             </Stack>
             <Box mt={2}>
             <Link to={{
-              pathname: `/add-criteria/for-decision/${decision.decision_id}`,
+              pathname: `/list-criteria/for-decision/${decision.decision_id}`,
               state: { decisions }
           }}
           ><Button variant="contained">Manage</Button></Link>

@@ -28,7 +28,6 @@ export default function HoverRating() {
     >
       <Rating
         name="hover-feedback"
-        value={value}
         precision={1}
         size="large"
         onChange={(event, newValue) => {

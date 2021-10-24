@@ -7,7 +7,7 @@ import Login from './components/Login'
 import About from './components/About'
 import ListDecisions from './components/ListDecisions'
 import AddDecision from './components/AddDecision'
-import ListCritiera from './components/ListCriteria'
+import ListCriteria from './components/ListCriteria'
 import AddCriteria from './components/AddCriteria'
 import ListOptions from './components/ListOptions'
 import AddOption from './components/AddOption'
@@ -51,6 +51,7 @@ const Router = () => {
             <Route path="/decisions" component={ListDecisions} />
             <Route path="/add-decision" component={AddDecision} />
             <Route path="/add-criteria/for-decision/:id" component={AddCriteria} />
+            <Route path="/list-criteria/for-decision/:id" component={ListCriteria} />
             <Route path="/add-option" component={AddOption} />
         </Switch>
     );
