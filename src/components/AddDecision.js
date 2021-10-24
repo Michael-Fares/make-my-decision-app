@@ -18,6 +18,7 @@ axios.defaults.headers.common['authorization'] = `Bearer ${token}`;
  
 
 const AddDecision = (props) => {
+  let history = useHistory();
 
   const [decision, setDecision] = useState("")
 
@@ -34,10 +35,9 @@ const AddDecision = (props) => {
     {
       decision_text: decision
     })
-      .then(res => console.log(res))
+      .then(res => console.log(res)).then(history.push('/decisions'))
       .catch(err => console.log('there was an error', err))
 
-    console.log('the cookie token from front end', token)
     setDecision("")
   }
 

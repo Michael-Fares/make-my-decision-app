@@ -5,6 +5,19 @@
   width: 50%;
 }
 
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 50px auto;
+  width: 80%;
+}
+
+.flex-row-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 .option {
   display: flex;
   margin: 50px auto;

@@ -20,6 +20,7 @@ import AddOption from './components/AddOption'
 
 export const checkAuth = () => {
     const cookies = cookie.parse(document.cookie)
+    console.log(cookies["loggedIn"])
     return cookies["loggedIn"] ? true : false
 }
 
@@ -40,7 +41,7 @@ const ProtectedRoute = ({component: Component, ...rest}) => {
 
 
 
-const Router = (window) => {
+const Router = () => {
     return (
         <Switch>
             <Route exact path="/" component={About} />
@@ -49,7 +50,7 @@ const Router = (window) => {
             {/* Protect this route */}
             <Route path="/decisions" component={ListDecisions} />
             <Route path="/add-decision" component={AddDecision} />
-            <Route path="/add-critiera" component={AddCriteria} />
+            <Route path="/add-criteria/for-decision/:id" component={AddCriteria} />
             <Route path="/add-option" component={AddOption} />
         </Switch>
     );

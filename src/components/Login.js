@@ -42,14 +42,20 @@ const Login = (props) => {
     .then(function (response) {
       console.log('response', response);
       // set current user info in local storage
-      // this worked
+   
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("id", response.data.id);
       localStorage.setItem("email", response.data.email)
       localStorage.setItem("name", response.data.first_name)
-      localStorage.setItem("loggedIn", true)
+      localStorage.setItem("online", true)
+      
+      // set a logged in cookie for checkAuth fuction in router to verify
+
+      document.cookie = "loggedIn=true;"
+
+
      delete response.accessToken;
-    }).then(() => history.push("/decisions"))
+     window.location.replace('/decisions')})
     .catch(function (error) {
       console.log('THERE WAS AN ERROR', error);
     });

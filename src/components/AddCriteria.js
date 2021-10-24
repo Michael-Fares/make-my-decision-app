@@ -7,15 +7,27 @@ import {
   Stack,
   Paper
  } from "@mui/material";
- import { Link } from 'react-router-dom'
+ import { Link, useLocation } from 'react-router-dom'
 
  import RadioCritiera from './RadioCritiera';
 
 const AddCriteria = (props) => {
+    const location = useLocation()
+    const id = props.match.params.id
+    const decisions = props.location.state.decisions
+    const currentDecision = decisions.find(decision => decision.decision_id == id)
+    console.log('current decision', currentDecision)
+    console.log('props', props)
+    console.log('id', id)
+  
   return (
+    <>
+    <div className="option">
+      <Typography>{`Decision: ${currentDecision.decision_text}`}</Typography>
+    </div>
       <form className="form">
           <Box mb={2}>
-            <Typography variant="h6">What Critiera Would You Like To Add?</Typography>
+            <Typography variant="h6">What Critiera Would You Like To Add To This Decision?</Typography>
           </Box>
           
         <Stack spacing={3}>
@@ -27,12 +39,17 @@ const AddCriteria = (props) => {
             <Button fullWidth = {true} 
             variant="contained"
             className="form-margin"
+            onClick={()=>{
+              console.log('props', props)
+              console.log('id', id)
+            }}
             >
             Add
           </Button>
           
           </Stack>
       </form>
+    </>
   )
 }
 
