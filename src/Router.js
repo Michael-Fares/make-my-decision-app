@@ -52,7 +52,8 @@ const Router = () => {
             <Route path="/add-decision" component={AddDecision} />
             <Route path="/add-criteria/for-decision/:id" component={AddCriteria} />
             <Route path="/list-criteria/for-decision/:id" component={ListCriteria} />
-            <Route path="/add-option" component={AddOption} />
+            <Route path="/list-options/for-decision/:id" component={ListOptions} />
+            <Route path="/add-option/for-decision/:id" component={AddOption} />
         </Switch>
     );
 };

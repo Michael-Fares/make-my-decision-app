@@ -41,7 +41,16 @@ const ListCriteria = (props) => {
     // The array is called a dependecy array
   }, []);
 
+  const handleDelete = (id) => {
+    // delete on front end
+    const updatedList = criteria.filter(criterion => criterion.criterion_id !== id)
+    setCriteria(updatedList)
+    // delete on backend
+    axios.delete(`http://localhost:4001/criteria/${id}`)
+    .then(res => console.log(res))
+    .catch(err => console.log('There was an error', err))
 
+  }
 
   return (
     <>
@@ -59,9 +68,12 @@ const ListCriteria = (props) => {
         + Add A New Criteria
       </Button></Link>
 
-      <Button variant="contained">
+      <Link to={{
+              pathname: `/list-options/for-decision/${id}`,
+              state: { currentDecision }
+          }}><Button variant="contained">
         I'm Done Adding Criteria, Take Me To Options 
-      </Button>
+      </Button></Link>
 
     </div>
     <ol className="list">
@@ -77,7 +89,7 @@ const ListCriteria = (props) => {
                 <Rating name="read-only" value={criterion.criterion_importance} readOnly />
                 </Stack>
                 <Box mt={2}>
-                <Button variant="contained" color="error">Delete</Button>
+                <Button variant="contained" color="error" onClick={()=>{handleDelete(criterion.criterion_id)}}>Delete</Button>
                 </Box>
               </li>
               </Paper>

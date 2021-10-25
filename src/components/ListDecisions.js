@@ -3,6 +3,7 @@ import { Box, Typography, Button, Paper, Stack, Container} from '@mui/material'
 import { Link, useLocation } from 'react-router-dom'
 
 import axios from 'axios'
+import AddDecision from './AddDecision'
 
 
 const ListDecisions = () => {
@@ -18,6 +19,17 @@ const ListDecisions = () => {
       .then((res) => setDecisions(res.data));
     // The array is called a dependecy array
   }, []);
+
+  const handleDelete = (id) => {
+    // delete on front end
+    const updatedList = decisions.filter(decision => decision.decision_id !== id)
+    setDecisions(updatedList)
+    // delete on backend
+    axios.delete(`http://localhost:4001/decisions/${id}`)
+    .then(res => console.log(res))
+    .catch(err => console.log('There was an error', err))
+
+  }
 
   return (
     <>
@@ -62,7 +74,7 @@ const ListDecisions = () => {
               state: { decisions }
           }}
           ><Button variant="contained">Manage</Button></Link>
-            <Button variant="contained" color="error">Delete</Button>
+            <Button variant="contained" color="error" onClick={()=>{handleDelete(decision.decision_id)}}>Delete</Button>
             </Stack>
             </Box>
           </li>
