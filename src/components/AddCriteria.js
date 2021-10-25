@@ -5,37 +5,56 @@ import {
   Box,
   Typography,
   Stack,
-  Paper
+  Paper,
+  Rating,
+  Container
  } from "@mui/material";
- import { Link, useLocation } from 'react-router-dom'
+ import StarIcon from '@mui/icons-material/Star';
+ import { Link, useLocation, useHistory } from 'react-router-dom'
+ import axios from 'axios'
 
- import RadioCritiera from './RadioCritiera';
 
 
+ const labels = {
+  1: 'Less Important',
+  2: 'Kindof Neutral',
+  3: 'Somewhat Important',
+  4: 'Important',
+  5: 'Very Important',
+};
 
 const AddCriteria = (props) => {
     const location = useLocation()
+    const history = useHistory()
     const currentDecision = props.location.state.currentDecision
-    console.log('current decision', currentDecision)
 
-    const [criterion, setCriterion] = useState({
-      criterion_text: "",
-      criterion_importance: null
-    })
+    const id = currentDecision.decision_id
+
+    const [criterion, setCriterion] = useState('')
+
+    const [value, setValue] = useState(0)
+
+    const [hover, setHover] = useState(-1);
    
     const handleChange = (e) => {
       e.preventDefault()
-      const newCriterion = { ... criterion }
-      newCriterion[e.target.name] = e.target.value
-      setCriterion(newCriterion)
+      setCriterion(e.target.value)
+    }
+
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      axios.post(`http://localhost:4001/criteria/for-decision/${id}`, {
+        criterion_text: criterion,
+        criterion_importance: value
+      }).then(res => console.log(res)).then(history.goBack())
     }
   
   return (
     <>
-    <div className="option">
+    <Container>
       <Typography>{`Decision: ${currentDecision.decision_text}`}</Typography>
-    </div>
-      <form className="form">
+    </Container>
+      <form className="form" onSubmit={handleSubmit}>
           <Box mb={2}>
             <Typography variant="h6">What Critiera Would You Like To Add To This Decision?</Typography>
           </Box>
@@ -45,13 +64,37 @@ const AddCriteria = (props) => {
         <Box mb={2}>
             <Typography variant="h6">How Important Is this Critiera To You?</Typography>
           </Box>
-            <RadioCritiera value={criterion.criterion_importance} name="criterion_importance" onChange={(e)=>{handleChange(e)}} />
+          <Box
+            sx={{
+              width: 400,
+              height: 100,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <Rating
+              name="hover-feedback"
+              precision={1}
+              size="large"
+              value={value}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+              onChangeActive={(event, newHover) => {
+                setHover(newHover);
+              }}
+              emptyIcon={<StarIcon fontSize="50px" style={{ opacity: 0.55 }} fontSize="inherit" />}
+            />
+            {value !== null && (
+              <Box sx={{ mt: 5}}>{labels[hover !== -1 ? hover : value]}</Box>
+            )}
+          </Box>
             <Button fullWidth = {true} 
             variant="contained"
             className="form-margin"
-            onClick={()=>{
-              console.log('props', props)
-            }}
+            type="submit"
             >
             Add
           </Button>

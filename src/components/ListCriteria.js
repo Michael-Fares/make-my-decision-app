@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Typography, Button, Container} from '@mui/material'
+import { Box, Typography, Button, Container, Stack, Paper, Rating} from '@mui/material'
 import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
@@ -19,13 +19,32 @@ const ListCriteria = (props) => {
   useEffect(() => {
     console.log("Mounted");
     axios.get(`http://localhost:4001/criteria/for-decision/${id}`)
-      .then((res) => setCriteria(res.data));
+      .then((res) => {
+        console.log(res)
+        const rawCriteria = res.data
+        const qualitativeCriteria = rawCriteria.map(criterion => {
+          if(criterion.criterion_importance === 5) {
+            return {...criterion, quality: "Very Important"}
+          } else if (criterion.criterion_importance === 4) {
+            return {...criterion, quality: "Important"}
+          } else if (criterion.criterion_importance === 3) {
+            return {...criterion, quality: "Somewhat Important"}
+          } else if (criterion.criterion_importance === 2) {
+            return {...criterion, quality: "Kindof Neutral"}
+          } else {
+            return {...criterion, quality: "Less Important"}
+          }
+        })
+
+        setCriteria(qualitativeCriteria)
+      });
     // The array is called a dependecy array
   }, []);
 
+
+
   return (
     <>
-   
     <Container>
       <Typography variant="h6">{currentDecision.decision_text}</Typography>
       <Typography>Criteria important to you in this decision appear below:</Typography>
@@ -45,6 +64,29 @@ const ListCriteria = (props) => {
       </Button>
 
     </div>
+    <ol className="list">
+      <Stack spacing={3}>
+        {criteria.map(criterion => {
+          return (
+            <>
+              <Paper elevation={4} style={{padding: "30px"}}>
+              <li key={criterion.criterion_id}>
+                <Stack spacing={1}>
+                <Typography variant="h6">{criterion.criterion_text}</Typography>
+                <Typography>{`${criterion.quality} to you.`}</Typography>
+                <Rating name="read-only" value={criterion.criterion_importance} readOnly />
+                </Stack>
+                <Box mt={2}>
+                <Button variant="contained" color="error">Delete</Button>
+                </Box>
+              </li>
+              </Paper>
+            </>
+          )
+        })}
+        </Stack>
+      </ol>
+      
     </>
   )
 }

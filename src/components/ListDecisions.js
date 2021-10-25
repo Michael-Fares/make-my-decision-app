@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Box, Typography, Button, Paper, Stack, Chip} from '@mui/material'
+import { Box, Typography, Button, Paper, Stack, Container} from '@mui/material'
 import { Link, useLocation } from 'react-router-dom'
 
 import axios from 'axios'
@@ -21,19 +21,19 @@ const ListDecisions = () => {
 
   return (
     <>
-    <div className="option">
+   
       {decisions.length ?
-      <div>
-      <Typography>{`Welcome ${user}! Your saved decisions are here:`}</Typography>
+      <Container>
+      <Typography variant="h6">{`Welcome ${user}! Your saved decisions are here:`}</Typography>
       <Typography>Click "Manage" to start adding criteria and options!</Typography>
-      </div>
+      </Container>
       :
-      <div>
-      <Typography>{`Welcome ${user}!`}</Typography>
+      <Container>
+      <Typography variant="h6">{`Welcome ${user}!`}</Typography>
       <Typography>You don't have any saved decisions yet, click "Add New Decision" to make your first!</Typography>
-      </div>
+      </Container>
       }
-
+       <div className="option">
       <Link to="/add-decision">
       <Button variant="contained">
         + Add New Decision
@@ -56,11 +56,14 @@ const ListDecisions = () => {
             <Typography><span>Options:</span> {decision.option_count}</Typography>}
             </Stack>
             <Box mt={2}>
+            <Stack direction="row" spacing={4}>
             <Link to={{
               pathname: `/list-criteria/for-decision/${decision.decision_id}`,
               state: { decisions }
           }}
           ><Button variant="contained">Manage</Button></Link>
+            <Button variant="contained" color="error">Delete</Button>
+            </Stack>
             </Box>
           </li>
           </Paper>
