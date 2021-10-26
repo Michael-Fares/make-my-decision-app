@@ -11,6 +11,7 @@ import ListCriteria from './components/ListCriteria'
 import AddCriteria from './components/AddCriteria'
 import ListOptions from './components/ListOptions'
 import AddOption from './components/AddOption'
+import Rankings from './components/Rankings'
 
 
 
@@ -54,6 +55,7 @@ const Router = () => {
             <Route path="/list-criteria/for-decision/:id" component={ListCriteria} />
             <Route path="/list-options/for-decision/:id" component={ListOptions} />
             <Route path="/add-option/for-decision/:id" component={AddOption} />
+            <Route path="/rankings/for-decision/:id" component={Rankings} />
         </Switch>
     );
 };

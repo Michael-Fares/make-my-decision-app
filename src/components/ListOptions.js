@@ -48,9 +48,12 @@ const ListOptions = (props) => {
         + Add A New Option
       </Button></Link>
 
-      <Button variant="contained">
+      <Link to={{
+              pathname: `/rankings/for-decision/${id}`,
+              state: { currentDecision }
+          }}><Button variant="contained">
         I'm Done Adding Options Take Me To Rankings 
-      </Button>
+      </Button></Link>
 
     </div>
     <ol className="list">
