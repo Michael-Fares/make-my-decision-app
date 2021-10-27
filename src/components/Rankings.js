@@ -32,11 +32,11 @@ const Rankings = (props) => {
   const currentDecision = props.location.state.currentDecision
 
   const id = currentDecision.decision_id
-  console.log('current decision', props.location.state.currentDecision)
+
 
   const [rankings, setRankings] = useState([])
 
-  const [rank, setRank] = useState(0)
+  const [selectedOption, setSelectedOption] = useState("")
 
   useEffect(() => {
     axios.get(`http://localhost:4001/rankings/for-decision/${id}`)
@@ -46,77 +46,103 @@ const Rankings = (props) => {
       })
     }, [])
   
-  return (
+    const handleOptionChange = (e) => {
+      setSelectedOption(e.target.value)
+    }
+
+    const handleDelete = (index) => {
+      let rankingsCopy = [...rankings]
+      rankingsCopy.splice(index, 1)
+      setRankings(rankingsCopy)
+    }
+  
+    return (
     <>
      <Container>
       <Typography variant="h6">{currentDecision.decision_text}</Typography>
       <Typography>
-        Rank each option in this decision on each criteria. Once you have ranked everything, you will see you results!
+        Rank each option in this decision on each criteria. Once you have ranked everything, you will see your results!
       </Typography>
     </Container>
-    
-
-
-    
-    
+      {!rankings.length && 
+      <Container className="form" alignItems="center" justifyContent="center">
+        <Button variant="contained">All Done! Click to see your results!</Button>
+      </Container>
+      }
       {rankings.map((ranking, index) => {
+        const isEnabled = selectedOption !== ""
         return (
-          <>
-          <form className="form">
-          <Paper elevation={4} style={{padding: "30px"}}>
-          <Box mb={2}>
-          <Stack justifyContent="center" alignItems="center">
-          <Typography variant="h6">{`How do you feel about "${ranking.option}" on "${ranking.criterion}"?`}</Typography>
-          </Stack>
-          </Box>  
-          <Stack spacing={4} direction="row" justifyContent="center" alignItems="center">
+          <form className="form" key={index} onSubmit={
+            (e) => {
+              e.preventDefault()
+              if (ranking.option_rank_on_criterion === null) {
+                axios.post(`http://localhost:4001/rankings/for-option/${ranking.option_id}/on-criterion/${ranking.criterion_id}`, {
+                  option_rank_on_criterion: Number(selectedOption)
+                })
+                  .then(res => console.log(res)).then(setSelectedOption("")).then(() => handleDelete(index))
+                  .catch(err => console.log(err))
+                } else {
+                  axios.put(`http://localhost:4001/rankings/for-option/${ranking.option_id}/on-criterion/${ranking.criterion_id}`, {
+                  option_rank_on_criterion: Number(selectedOption)
+                })
+                  .then(res => console.log(res)).then(setSelectedOption("")).then(() => handleDelete(index))
+                  .catch(err => console.log(err))
+                }
+            }
+          }>
+              <Paper elevation={4} style={{padding: "30px"}}>
+              <Box mb={2}>
+              <Stack justifyContent="center" alignItems="center">
+              <Typography variant="h6">{`How do you feel about "${ranking.option}" on "${ranking.criterion}"?`}</Typography>
+              </Stack>
+              </Box>  
+              <Stack spacing={4} direction="row" justifyContent="center" alignItems="center">
       
               <Stack spacing={5} justifyContent="center" alignItems="center">
-              <label className="container" for="terrible">
-                <input name="rank" type="radio" id="terrible" value="1" />
+              <label className="container" htmlFor="terrible">
+                <input name="rank" type="radio" id="terrible" value="1" onChange={(e)=>handleOptionChange(e)} checked={selectedOption === "1"} required/>
                 <FontAwesomeIcon className="checkmark terrible" icon={faAngry} size="2x"/>
               </label>
               <Typography>Terrible</Typography>
               </Stack>
       
               <Stack spacing={5} justifyContent="center" alignItems="center">
-              <label className="container" for="bad">
-                <input name="rank" type="radio" id="bad" value="2" />
+              <label className="container" htmlFor="bad">
+                <input name="rank" type="radio" id="bad" value="2" onChange={(e)=>handleOptionChange(e)} checked={selectedOption === "2"} required/>
                 <FontAwesomeIcon className="checkmark bad" icon={faFrownOpen} size="2x"/>
               </label>
               <Typography>Bad</Typography>
               </Stack>
       
               <Stack spacing={5} justifyContent="center" alignItems="center">
-              <label className="container" for="average">
-                <input name="rank" type="radio" id="average" value="3" />
+              <label className="container" htmlFor="average">
+                <input name="rank" type="radio" id="average" value="3" onChange={(e)=>handleOptionChange(e)} checked={selectedOption === "3"} required/>
                 <FontAwesomeIcon className="checkmark average" icon={faMeh} size="2x"/>
               </label>
               <Typography>Average</Typography>
               </Stack>
       
               <Stack spacing={5} justifyContent="center" alignItems="center">
-              <label className="container" for="good">
-                <input name="rank" type="radio" id="good" value="4" />
+              <label className="container" htmlFor="good">
+                <input name="rank" type="radio" id="good" value="4" onChange={(e)=>handleOptionChange(e)} checked={selectedOption === "4"} required/>
                 <FontAwesomeIcon className="checkmark good" icon={faGrin} size="2x"/>
               </label>
               <Typography>Good</Typography>
               </Stack>
       
               <Stack spacing={5} justifyContent="center" alignItems="center">
-              <label className="container" for="excellent">
-                <input name="rank" type="radio" id="excellent" value="5" />
+              <label className="container" htmlFor="excellent">
+                <input name="rank" type="radio" id="excellent" value="5" onChange={(e)=>handleOptionChange(e)} checked={selectedOption === "5"} required/>
                 <FontAwesomeIcon className="checkmark excellent" icon={faSmileBeam} size="2x"/>
               </label>
               <Typography>Excellent</Typography>
               </Stack>
             </Stack>
               <Box mt={2}>
-              <Button variant="contained" fullWidth={true}>Submit</Button>
+              <Button disabled={!isEnabled} variant="contained" fullWidth={true} type="submit">Submit</Button>
               </Box>
             </Paper>
-            </form>
-        </>
+        </form>
         )
       })}
     </>
