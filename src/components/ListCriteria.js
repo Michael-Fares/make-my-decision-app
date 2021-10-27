@@ -3,6 +3,8 @@ import { Box, Typography, Button, Container, Stack, Paper, Rating} from '@mui/ma
 import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
+const url = "http://localhost:4001"
+
 
 const ListCriteria = (props) => {
 
@@ -18,7 +20,7 @@ const ListCriteria = (props) => {
 
   useEffect(() => {
     console.log("Mounted");
-    axios.get(`http://localhost:4001/criteria/for-decision/${id}`)
+    axios.get(`${url}/criteria/for-decision/${id}`)
       .then((res) => {
         console.log(res)
         const rawCriteria = res.data
@@ -46,7 +48,7 @@ const ListCriteria = (props) => {
     const updatedList = criteria.filter(criterion => criterion.criterion_id !== id)
     setCriteria(updatedList)
     // delete on backend
-    axios.delete(`http://localhost:4001/criteria/${id}`)
+    axios.delete(`${url}/criteria/${id}`)
     .then(res => console.log(res))
     .catch(err => console.log('There was an error', err))
 

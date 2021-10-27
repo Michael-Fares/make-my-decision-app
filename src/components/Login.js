@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios'
 import { 
   Button,
   TextField,
@@ -7,7 +6,11 @@ import {
   Typography,
   Stack
  } from "@mui/material";
- import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import axios from 'axios'
+
+const url = "http://localhost:4001"
+
 
 const Login = (props) => {
 
@@ -35,7 +38,7 @@ const Login = (props) => {
     // posts just a new user fname and lname to users table
     // got it to work in firefox turning off CORS
     // but not in Chrome
-    axios.post('http://localhost:4001/users/login', {
+    axios.post(`${url}/users/login`, {
       email: user.email,
       password: user.password,
     })

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Box, Typography, Button, Paper, Stack, Container} from '@mui/material'
-import axios from 'axios'
 import { Link, useLocation, useHistory } from 'react-router-dom'
+import axios from 'axios'
+
+const url = "http://localhost:4001"
 
 const ListOptions = (props) => {
   const location = useLocation()
@@ -17,7 +19,7 @@ const ListOptions = (props) => {
 
   useEffect(() => {
     console.log("Mounted");
-    axios.get(`http://localhost:4001/options/for-decision/${id}`)
+    axios.get(`${url}/options/for-decision/${id}`)
       .then((res) => {
         console.log(res)
         setOptions(res.data)
@@ -29,7 +31,7 @@ const ListOptions = (props) => {
       const updatedList = options.filter(option => option.option_id !== id)
       setOptions(updatedList)
       // delete on backend
-      axios.delete(`http://localhost:4001/options/${id}`)
+      axios.delete(`${url}/options/${id}`)
       .then(res => console.log(res))
       .catch(err => console.log('There was an error', err))
   

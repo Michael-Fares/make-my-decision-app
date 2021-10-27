@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { Box, Typography, Button, Paper, Stack, Container} from '@mui/material'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import axios from 'axios'
-import AddDecision from './AddDecision'
-
+const url = "http://localhost:4001"
 
 const ListDecisions = () => {
   const user = localStorage.getItem('name')
@@ -15,7 +14,7 @@ const ListDecisions = () => {
   useEffect(() => {
     const id = localStorage.getItem('id')
     console.log("Mounted");
-    axios.get(`http://localhost:4001/decisions/for-user/${id}`)
+    axios.get(`${url}/decisions/for-user/${id}`)
       .then((res) => setDecisions(res.data));
     // The array is called a dependecy array
   }, []);
@@ -25,7 +24,7 @@ const ListDecisions = () => {
     const updatedList = decisions.filter(decision => decision.decision_id !== id)
     setDecisions(updatedList)
     // delete on backend
-    axios.delete(`http://localhost:4001/decisions/${id}`)
+    axios.delete(`${url}/decisions/${id}`)
     .then(res => console.log(res))
     .catch(err => console.log('There was an error', err))
 

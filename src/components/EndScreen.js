@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Link, useLocation, useHistory } from 'react-router-dom'
+import axios from 'axios'
 import { Box, 
   Typography, 
   Button, 
@@ -12,16 +12,16 @@ import { Box,
   Pagination,
   PaginationItem, 
   dividerClasses,
-  Divider } from '@mui/material'
-
+  Divider } 
+  from '@mui/material'
 import {
   calculateCriteriaWeightings,
   chunkRankings,
   finalResults
 } from '../math.js'
-
 import { Doughnut, Bar } from 'react-chartjs-2';
 
+const url = "http://localhost:4001"
 
 
 const EndScreen = (props) => {
@@ -59,7 +59,7 @@ const EndScreen = (props) => {
           }
 
   useEffect(() => {
-    axios.get(`http://localhost:4001/rankings/for-decision/${id}`)
+    axios.get(`${url}/rankings/for-decision/${id}`)
       .then((res) => {
         setRankings(res.data)
       })
@@ -70,6 +70,8 @@ const EndScreen = (props) => {
       })
     }, [])
 
+
+    // customize these better with opacity rgba
     const colors = ["red", "orange", "blue", "green", "yellow", "gray", "teal", "lightseagreen"]
     const doughnutData = {
       labels: weightings.map(item => item.criterion),
@@ -86,8 +88,7 @@ const EndScreen = (props) => {
       datasets: [{
         label: currentDecision.decision_text,
         data: results.map(item => item.final),
-        backgroundColor: ["green"
-        ],
+        backgroundColor: colors,
         borderColor:["black"],
         borderWidth: 2
       }]

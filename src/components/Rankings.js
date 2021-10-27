@@ -11,8 +11,6 @@ import { Box,
   PaginationItem, 
   dividerClasses,
   Divider} from '@mui/material'
-
-
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import {
     faAngry,
@@ -22,9 +20,10 @@ import { Box,
     faSmileBeam,
     faGrinBeam
   } from "@fortawesome/free-solid-svg-icons";
-
 import axios from 'axios'
 import { Link, useLocation, useHistory } from 'react-router-dom'
+
+const url = "http://localhost:4001"
 
 const Rankings = (props) => {
   const location = useLocation()
@@ -43,7 +42,7 @@ const Rankings = (props) => {
   const [selectedOption, setSelectedOption] = useState("")
 
   useEffect(() => {
-    axios.get(`http://localhost:4001/rankings/for-decision/${id}`)
+    axios.get(`${url}/rankings/for-decision/${id}`)
       .then((res) => {
         console.log(res)
         setRankings(res.data)
@@ -83,13 +82,13 @@ const Rankings = (props) => {
             (e) => {
               e.preventDefault()
               if (ranking.option_rank_on_criterion === null) {
-                axios.post(`http://localhost:4001/rankings/for-option/${ranking.option_id}/on-criterion/${ranking.criterion_id}`, {
+                axios.post(`${url}/rankings/for-option/${ranking.option_id}/on-criterion/${ranking.criterion_id}`, {
                   option_rank_on_criterion: Number(selectedOption)
                 })
                   .then(res => console.log(res)).then(setSelectedOption("")).then(() => handleDelete(index))
                   .catch(err => console.log(err))
                 } else {
-                  axios.put(`http://localhost:4001/rankings/for-option/${ranking.option_id}/on-criterion/${ranking.criterion_id}`, {
+                  axios.put(`${url}/rankings/for-option/${ranking.option_id}/on-criterion/${ranking.criterion_id}`, {
                   option_rank_on_criterion: Number(selectedOption)
                 })
                   .then(res => console.log(res)).then(setSelectedOption("")).then(() => handleDelete(index))
