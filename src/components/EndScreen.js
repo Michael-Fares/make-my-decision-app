@@ -14,11 +14,14 @@ import { Box,
   dividerClasses,
   Divider } from '@mui/material'
 
-  import {
-    calculateCriteriaWeightings,
-    chunkRankings,
-    finalResults
-  } from '../math.js'
+import {
+  calculateCriteriaWeightings,
+  chunkRankings,
+  finalResults
+} from '../math.js'
+
+import { Doughnut, Bar } from 'react-chartjs-2';
+
 
 
 const EndScreen = (props) => {
@@ -62,20 +65,45 @@ const EndScreen = (props) => {
       })
       .then(()=>{
         const chunksWithPercents = addPercents(chunkRankings(rankings, criteria.length))
-        console.log('chunks with percents', chunksWithPercents)
         const final = finalResults(chunksWithPercents)
         setResults(final)
       })
     }, [])
 
+    const colors = ["red", "orange", "blue", "green", "yellow", "gray", "teal", "lightseagreen"]
+    const doughnutData = {
+      labels: weightings.map(item => item.criterion),
+      datasets: [{
+        label: 'My First Dataset',
+        data: weightings.map(item => item.weightingPercent),
+        backgroundColor: colors,
+        hoverOffset: 4
+      }]
+    };
+
+    const barData = {
+      labels: results.map(item => item.option),
+      datasets: [{
+        label: currentDecision.decision_text,
+        data: results.map(item => item.final),
+        backgroundColor: ["green"
+        ],
+        borderColor:["black"],
+        borderWidth: 2
+      }]
+    };
 
   return (
+    <>
     <Container>
     <Typography variant="h6">{currentDecision.decision_text}</Typography>
     <Typography>
       Your results:
     </Typography>
   </Container>
+  <Bar data={barData} />
+  <Doughnut data={doughnutData} />
+  </>
   )
 
 }
