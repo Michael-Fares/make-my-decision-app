@@ -12,6 +12,7 @@ import AddCriteria from './components/AddCriteria'
 import ListOptions from './components/ListOptions'
 import AddOption from './components/AddOption'
 import Rankings from './components/Rankings'
+import EndScreen from './components/EndScreen'
 
 
 
@@ -56,6 +57,7 @@ const Router = () => {
             <Route path="/list-options/for-decision/:id" component={ListOptions} />
             <Route path="/add-option/for-decision/:id" component={AddOption} />
             <Route path="/rankings/for-decision/:id" component={Rankings} />
+            <Route path="/results/for-decision/:id" component={EndScreen} />
         </Switch>
     );
 };

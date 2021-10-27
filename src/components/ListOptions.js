@@ -9,7 +9,8 @@ const ListOptions = (props) => {
   const currentDecision = props.location.state.currentDecision
 
   const id = currentDecision.decision_id
-  console.log('current decision', props.location.state.currentDecision)
+
+  const criteria = props.location.state.criteria 
 
 
   const [options, setOptions] = useState([])
@@ -50,7 +51,7 @@ const ListOptions = (props) => {
 
       <Link to={{
               pathname: `/rankings/for-decision/${id}`,
-              state: { currentDecision }
+              state: { currentDecision, criteria }
           }}><Button variant="contained">
         I'm Done Adding Options Take Me To Rankings 
       </Button></Link>

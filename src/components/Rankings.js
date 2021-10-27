@@ -33,6 +33,10 @@ const Rankings = (props) => {
 
   const id = currentDecision.decision_id
 
+  const criteria = props.location.state.criteria
+
+
+
 
   const [rankings, setRankings] = useState([])
 
@@ -66,7 +70,10 @@ const Rankings = (props) => {
     </Container>
       {!rankings.length && 
       <Container className="form" alignItems="center" justifyContent="center">
-        <Button variant="contained">All Done! Click to see your results!</Button>
+        <Link to={{
+              pathname: `/results/for-decision/${id}`,
+              state: { currentDecision, criteria }
+          }}><Button variant="contained">All Done! Click to see your results!</Button></Link>
       </Container>
       }
       {rankings.map((ranking, index) => {

@@ -63,14 +63,16 @@ const ListCriteria = (props) => {
       
       <Link to={{
               pathname: `/add-criteria/for-decision/${id}`,
-              state: { currentDecision }
+              state: { 
+                currentDecision
+              }
           }}><Button variant="contained">
         + Add A New Criteria
       </Button></Link>
 
       <Link to={{
               pathname: `/list-options/for-decision/${id}`,
-              state: { currentDecision }
+              state: { currentDecision , criteria }
           }}><Button variant="contained">
         I'm Done Adding Criteria, Take Me To Options 
       </Button></Link>
