@@ -4,7 +4,8 @@ import {
   TextField,
   Box,
   Typography,
-  Stack
+  Stack, 
+  Container
  } from "@mui/material";
  import { Link, useLocation, useHistory } from 'react-router-dom'
  import axios from 'axios'
@@ -38,6 +39,10 @@ const AddOption = (props) => {
   }
 
   return (
+    <>
+    <Container>
+      <Typography>{`Decision: ${currentDecision.decision_text}`}</Typography>
+    </Container>
       <form className="form" onSubmit={handleSubmit}>
           <Box mb={2}>
             <Typography variant="h6">What Option Would You To Add?</Typography>
@@ -54,6 +59,7 @@ const AddOption = (props) => {
           </Button>
           </Stack>
       </form>
+      </>
   )
 }
 

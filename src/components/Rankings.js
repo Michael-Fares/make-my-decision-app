@@ -8,7 +8,21 @@ import { Box,
   Step,
   StepLabel,
   Pagination,
-  PaginationItem } from '@mui/material'
+  PaginationItem, 
+  dividerClasses,
+  Divider} from '@mui/material'
+
+
+  import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  import {
+    faAngry,
+    faFrownOpen,
+    faMeh,
+    faGrin,
+    faSmileBeam,
+    faGrinBeam
+  } from "@fortawesome/free-solid-svg-icons";
+
 import axios from 'axios'
 import { Link, useLocation, useHistory } from 'react-router-dom'
 
@@ -33,18 +47,79 @@ const Rankings = (props) => {
     }, [])
   
   return (
+    <>
+     <Container>
+      <Typography variant="h6">{currentDecision.decision_text}</Typography>
+      <Typography>
+        Rank each option in this decision on each criteria. Once you have ranked everything, you will see you results!
+      </Typography>
+    </Container>
     
-    <Pagination count={rankings.length || 1}>
+
+
+    
+    
       {rankings.map((ranking, index) => {
         return (
-          <PaginationItem key={index}>
-            <form className="form" key={index}>
-              <Typography variant="h6">{`How do you feel about ${ranking.option} on ${ranking.criterion}?`}</Typography>
+          <>
+          <form className="form">
+          <Paper elevation={4} style={{padding: "30px"}}>
+          <Box mb={2}>
+          <Stack justifyContent="center" alignItems="center">
+          <Typography variant="h6">{`How do you feel about "${ranking.option}" on "${ranking.criterion}"?`}</Typography>
+          </Stack>
+          </Box>  
+          <Stack spacing={4} direction="row" justifyContent="center" alignItems="center">
+      
+              <Stack spacing={5} justifyContent="center" alignItems="center">
+              <label className="container" for="terrible">
+                <input name="rank" type="radio" id="terrible" value="1" />
+                <FontAwesomeIcon className="checkmark terrible" icon={faAngry} size="2x"/>
+              </label>
+              <Typography>Terrible</Typography>
+              </Stack>
+      
+              <Stack spacing={5} justifyContent="center" alignItems="center">
+              <label className="container" for="bad">
+                <input name="rank" type="radio" id="bad" value="2" />
+                <FontAwesomeIcon className="checkmark bad" icon={faFrownOpen} size="2x"/>
+              </label>
+              <Typography>Bad</Typography>
+              </Stack>
+      
+              <Stack spacing={5} justifyContent="center" alignItems="center">
+              <label className="container" for="average">
+                <input name="rank" type="radio" id="average" value="3" />
+                <FontAwesomeIcon className="checkmark average" icon={faMeh} size="2x"/>
+              </label>
+              <Typography>Average</Typography>
+              </Stack>
+      
+              <Stack spacing={5} justifyContent="center" alignItems="center">
+              <label className="container" for="good">
+                <input name="rank" type="radio" id="good" value="4" />
+                <FontAwesomeIcon className="checkmark good" icon={faGrin} size="2x"/>
+              </label>
+              <Typography>Good</Typography>
+              </Stack>
+      
+              <Stack spacing={5} justifyContent="center" alignItems="center">
+              <label className="container" for="excellent">
+                <input name="rank" type="radio" id="excellent" value="5" />
+                <FontAwesomeIcon className="checkmark excellent" icon={faSmileBeam} size="2x"/>
+              </label>
+              <Typography>Excellent</Typography>
+              </Stack>
+            </Stack>
+              <Box mt={2}>
+              <Button variant="contained" fullWidth={true}>Submit</Button>
+              </Box>
+            </Paper>
             </form>
-          </PaginationItem>
+        </>
         )
       })}
-    </Pagination>
+    </>
   
   )
 }
