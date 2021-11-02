@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Typography, Button, Paper, Stack, Container} from '@mui/material'
+import { Divider, Typography, Button, Paper, Stack, Container} from '@mui/material'
 import { Link, useLocation, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
@@ -14,8 +14,12 @@ const ListOptions = (props) => {
 
   const criteria = props.location.state.criteria 
 
+  
+
 
   const [options, setOptions] = useState([])
+
+  const isEnabled = options.length
 
   useEffect(() => {
     console.log("Mounted");
@@ -54,8 +58,8 @@ const ListOptions = (props) => {
       <Link to={{
               pathname: `/rankings/for-decision/${id}`,
               state: { currentDecision, criteria }
-          }}><Button variant="contained">
-        I'm Done Adding Options Take Me To Rankings 
+          }}><Button variant="contained" disabled={!isEnabled}>
+        I'm Done Adding Options. Take Me To Rankings 
       </Button></Link>
 
     </div>
@@ -66,12 +70,12 @@ const ListOptions = (props) => {
             <>
               <Paper elevation={4} style={{padding: "30px"}}>
               <li key={option.option_id}>
-                <Stack spacing={1}>
+                <Stack spacing={1} direction="row" justifyContent="space-evenly">
                 <Typography variant="h6">{option.option_text}</Typography>
+                <Divider orientation="vertical" flexItem />
+                
+                <Button variant="contained" color="error" onClick={()=>{handleDelete(option.option_id)}}  alignSelf="flex-end">Delete</Button>
                 </Stack>
-                <Box mt={2}>
-                <Button variant="contained" color="error" onClick={()=>{handleDelete(option.option_id)}}>Delete</Button>
-                </Box>
               </li>
               </Paper>
             </>

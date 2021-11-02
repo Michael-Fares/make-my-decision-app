@@ -5,23 +5,15 @@ import {
   Box,
   Typography,
   Stack,
-  Paper,
-  Rating,
   Container
  } from "@mui/material";
- import StarIcon from '@mui/icons-material/Star';
+
  import { Link, useLocation, useHistory } from 'react-router-dom'
  import axios from 'axios'
+ 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWeightHanging } from "@fortawesome/free-solid-svg-icons";
 
-
-
- const labels = {
-  1: 'Less Important',
-  2: 'Kindof Neutral',
-  3: 'Somewhat Important',
-  4: 'Important',
-  5: 'Very Important',
-};
 
 const AddCriteria = (props) => {
     const location = useLocation()
@@ -30,22 +22,26 @@ const AddCriteria = (props) => {
 
     const id = currentDecision.decision_id
 
-    const [criterion, setCriterion] = useState('')
+    const [criterion, setCriterion] = useState("")
 
-    const [value, setValue] = useState(0)
+    const [selectedOption, setSelectedOption] = useState("");
 
-    const [hover, setHover] = useState(-1);
+    const isEnabled = selectedOption !== "";
    
     const handleChange = (e) => {
       e.preventDefault()
       setCriterion(e.target.value)
     }
 
+    const handleOptionChange = (e) => {
+      setSelectedOption(e.target.value);
+    }
+
     const handleSubmit = (e) => {
       e.preventDefault()
       axios.post(`http://localhost:4001/criteria/for-decision/${id}`, {
         criterion_text: criterion,
-        criterion_importance: value
+        criterion_importance: selectedOption
       }).then(res => console.log(res)).then(history.goBack())
     }
   
@@ -60,46 +56,126 @@ const AddCriteria = (props) => {
           </Box>
           
         <Stack spacing={3}>
-        <TextField name="criterion_text" value={criterion.criterion_text} required="true" placeholder="Type Anything!" label="Type Anything!" onChange={(e)=>{handleChange(e)}}/>
+        <TextField name="criterion" value={criterion} required="true" placeholder="Type Anything!" label="Type Anything!" onChange={(e)=>{handleChange(e)}}/>
         <Box mb={2}>
             <Typography variant="h6">How Important Is this Critiera To You?</Typography>
           </Box>
-          <Box
-            sx={{
-              width: 400,
-              height: 100,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
+          
+          <Stack
+            spacing={10}
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
           >
-            <Rating
-              name="hover-feedback"
-              precision={1}
-              size="large"
-              value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-              onChangeActive={(event, newHover) => {
-                setHover(newHover);
-              }}
-              emptyIcon={<StarIcon fontSize="50px" style={{ opacity: 0.55 }} fontSize="inherit" />}
-            />
-            {value !== null && (
-              <Box sx={{ mt: 5}}>{labels[hover !== -1 ? hover : value]}</Box>
-            )}
-          </Box>
+            <Stack spacing={1} justifyContent="center" alignItems="center">
+              <label className="container2" htmlFor="less-important">
+                <input
+                  name="weight"
+                  type="radio"
+                  id="less-important"
+                  value="1"
+                  onChange={(e) => handleOptionChange(e)}
+                  checked={selectedOption === "1"}
+                  required
+                />
+                <FontAwesomeIcon
+                  className="checkmark2 less-important"
+                  icon={faWeightHanging}
+                />
+                <Typography className="weight-label">Less Important</Typography>
+              </label>
+            </Stack>
+
+            <Stack spacing={1} justifyContent="center" alignItems="center">
+              <label className="container2" htmlFor="kindof-neutral">
+                <input
+                  name="weight"
+                  type="radio"
+                  id="kindof-neutral"
+                  value="2"
+                  onChange={(e) => handleOptionChange(e)}
+                  checked={selectedOption === "2"}
+                  required
+                />
+                <FontAwesomeIcon
+                  className="checkmark2 kinda-neutral"
+                  icon={faWeightHanging}
+                />
+                <Typography className="weight-label">Kindof Neutral</Typography>
+              </label>
+            </Stack>
+
+            <Stack spacing={1} justifyContent="center" alignItems="center">
+              <label className="container2" htmlFor="somewhat-important">
+                <input
+                  name="weight"
+                  type="radio"
+                  id="somewhat-important"
+                  value="3"
+                  onChange={(e) => handleOptionChange(e)}
+                  checked={selectedOption === "3"}
+                  required
+                />
+                <FontAwesomeIcon
+                  className="checkmark2 somewhat-important"
+                  icon={faWeightHanging}
+                />
+                <Typography className="weight-label">
+                  Somewhat Important
+                </Typography>
+              </label>
+            </Stack>
+
+            <Stack spacing={1} justifyContent="center" alignItems="center">
+              <label className="container2" htmlFor="important">
+                <input
+                  name="weight"
+                  type="radio"
+                  id="important"
+                  value="4"
+                  onChange={(e) => handleOptionChange(e)}
+                  checked={selectedOption === "4"}
+                  required
+                />
+                <FontAwesomeIcon
+                  className="checkmark2 important"
+                  icon={faWeightHanging}
+                />
+                <Typography className="weight-label">Important</Typography>
+              </label>
+            </Stack>
+
+            <Stack spacing={1} justifyContent="center" alignItems="center">
+              <label className="container2" htmlFor="very-important">
+                <input
+                  name="weight"
+                  type="radio"
+                  id="very-important"
+                  value="5"
+                  onChange={(e) => handleOptionChange(e)}
+                  checked={selectedOption === "5"}
+                  required
+                />
+                <FontAwesomeIcon
+                  className="checkmark2 very-important"
+                  icon={faWeightHanging}
+                />
+                <Typography className="weight-label">Very Important</Typography>
+              </label>
+            </Stack>
+          </Stack>
+        </Stack>
+            <Box mt={15}>
             <Button fullWidth = {true} 
             variant="contained"
             className="form-margin"
             type="submit"
+            disabled={!isEnabled}
             >
             Add
           </Button>
+          </Box>
           
-          </Stack>
       </form>
     </>
   )

@@ -68,12 +68,12 @@ const Rankings = (props) => {
       </Typography>
     </Container>
       {!rankings.length && 
-      <Container className="form" alignItems="center" justifyContent="center">
+      <Stack alignItems="center" justifyContent="center" direction="row" mt={5}>
         <Link to={{
               pathname: `/results/for-decision/${id}`,
               state: { currentDecision, criteria }
           }}><Button variant="contained">All Done! Click to see your results!</Button></Link>
-      </Container>
+      </Stack>
       }
       <div className="rankings-container">
       {rankings.map((ranking, index) => {

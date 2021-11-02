@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Typography, Button, Container, Stack, Paper, Rating, Divider } from '@mui/material'
+import { Box, Typography, Button, Container, Stack, Paper, Divider } from '@mui/material'
 import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWeightHanging } from "@fortawesome/free-solid-svg-icons";
 
 const url = "http://localhost:4001"
 
@@ -26,15 +29,15 @@ const ListCriteria = (props) => {
         const rawCriteria = res.data
         const qualitativeCriteria = rawCriteria.map(criterion => {
           if(criterion.criterion_importance === 5) {
-            return {...criterion, quality: "Very Important"}
+            return {...criterion, quality: "Very Important", class: "very-important"}
           } else if (criterion.criterion_importance === 4) {
-            return {...criterion, quality: "Important"}
+            return {...criterion, quality: "Important", class: "important"}
           } else if (criterion.criterion_importance === 3) {
-            return {...criterion, quality: "Somewhat Important"}
+            return {...criterion, quality: "Somewhat Important", class: "somewhat-important"}
           } else if (criterion.criterion_importance === 2) {
-            return {...criterion, quality: "Kindof Neutral"}
+            return {...criterion, quality: "Kindof Neutral", class: "kinda-neutral"}
           } else {
-            return {...criterion, quality: "Less Important"}
+            return {...criterion, quality: "Less Important", class: "less-important"}
           }
         })
 
@@ -53,6 +56,7 @@ const ListCriteria = (props) => {
     .catch(err => console.log('There was an error', err))
 
   }
+  const isEnabled = criteria.length;
 
   return (
     <>
@@ -75,7 +79,7 @@ const ListCriteria = (props) => {
       <Link to={{
               pathname: `/list-options/for-decision/${id}`,
               state: { currentDecision , criteria }
-          }}><Button variant="contained">
+          }}><Button variant="contained" disabled={!isEnabled}>
         I'm Done Adding Criteria, Take Me To Options 
       </Button></Link>
 
@@ -92,7 +96,10 @@ const ListCriteria = (props) => {
                 <Divider orientation="vertical" flexItem />
                 <Typography>{`${criterion.quality} to you.`}</Typography>
                 <Divider orientation="vertical" flexItem />
-                <Rating name="read-only" value={criterion.criterion_importance} readOnly />
+                <FontAwesomeIcon
+                  className={criterion.class}
+                  icon={faWeightHanging}
+                />
                 <Divider orientation="vertical" flexItem />
                 
                 

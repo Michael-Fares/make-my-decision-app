@@ -122,3 +122,81 @@ ul {
 .rankings-container > form:not(:first-child) {
   display: none;
 }
+
+
+
+/* Customize the label (the container) */
+.container2 {
+  display: inline-block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
+}
+
+/* Hide the browser's default radio button */
+.container2 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark2 {
+  position: absolute;
+  top: 0;
+  left: 0.75em;
+  opacity: 0.8;
+}
+
+.weight-label {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.less-important {
+  transform: scale(1.2)
+}
+
+.kinda-neutral {
+  transform: scale(1.5);
+}
+
+.somewhat-important {
+  transform: scale(2);
+}
+
+.important {
+  transform: scale(2.5);
+}
+
+.very-important {
+  transform: scale(3);
+}
+
+/* On mouse-over, add a black background color */
+.container2:hover input ~ .checkmark2 {
+  color: #ab6d23;
+}
+.container2:hover input ~ .weight-label {
+  color: #ab6d23;
+}
+
+/* When the radio button is checked, add a blue background */
+.container2 input:checked ~ .checkmark2 {
+  color: #ab6d23;
+}
+.container2 input:checked ~ .weight-label {
+  color: #ab6d23;
+}
