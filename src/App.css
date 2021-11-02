@@ -200,3 +200,9 @@ ul {
 .container2 input:checked ~ .weight-label {
   color: #ab6d23;
 }
+
+.chart-container {
+  width: 50vw;
+  padding: 0 10px;
+  border: 10px solid royalblue;
+}

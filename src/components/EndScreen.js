@@ -97,7 +97,7 @@ const EndScreen = (props) => {
       datasets: [{
         label: currentDecision.decision_text,
         data: results,
-        backgroundColor: colors,
+        backgroundColor: "#ab6d23",
         borderColor:["black"],
         borderWidth: 2
       }]
@@ -106,13 +106,18 @@ const EndScreen = (props) => {
   return (
     <>
     <Container>
-    <Typography variant="h6">{currentDecision.decision_text}</Typography>
-    <Typography>
-      Your results:
-    </Typography>
+    <Typography variant="h6" mt={2} mb={2}>{currentDecision.decision_text}</Typography>
   </Container>
-  <Bar data={barData} />
-  <Doughnut data={doughnutData} />
+  <Stack direction="row" justifyContent="center" alignItems="space-evenly">
+    <div className="chart-container">
+      <Typography>Your options and how they compare out of 100%</Typography>
+      <Bar data={barData} />
+    </div>
+    <div className="chart-container">
+    <Typography>Your criteria and their propotional weighting out of 100%</Typography>
+      <Doughnut data={doughnutData} />
+    </div>
+  </Stack>
   </>
   )
 
