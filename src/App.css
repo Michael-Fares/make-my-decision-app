@@ -119,3 +119,6 @@ ul {
   color: #3E7C17
 }
 
+.rankings-container > form:not(:first-child) {
+  display: none;
+}

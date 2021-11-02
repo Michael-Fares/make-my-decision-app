@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Box, Typography, Button, Paper, Stack, Container} from '@mui/material'
+import { Box, Typography, Button, Paper, Stack, Container, Chip} from '@mui/material'
 import { Link } from 'react-router-dom'
 
 import axios from 'axios'
@@ -62,9 +62,9 @@ const ListDecisions = () => {
             
             <Stack spacing={2} direction="row">
             {decision.criteria_count === 0 ? <Typography><span>Criteria: </span>No critiera for this decision yet</Typography> : 
-            <Typography><span>Criteria:</span> {decision.criteria_count}</Typography>}
+            <Typography><span>Criteria:</span> <Chip label={decision.criteria_count} /></Typography>}
             {decision.option_count === 0 ? <Typography><span>Options: </span>No options for this decision yet</Typography> : 
-            <Typography><span>Options:</span> {decision.option_count}</Typography>}
+            <Typography><span>Options:</span> <Chip label={decision.option_count} /></Typography>}
             </Stack>
             <Box mt={2}>
             <Stack direction="row" spacing={4}>

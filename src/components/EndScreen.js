@@ -39,6 +39,7 @@ const EndScreen = (props) => {
   const weightings = calculateCriteriaWeightings(criteria)
   const [rankings, setRankings] = useState([])
   const [results, setResults] = useState([])
+  const [labels, setLabels] = useState([])
           // function to add percents to rankings
           const addPercents = (arr) => {
 
@@ -64,11 +65,19 @@ const EndScreen = (props) => {
         setRankings(res.data)
       })
       .then(()=>{
-        const chunksWithPercents = addPercents(chunkRankings(rankings, criteria.length))
-        const final = finalResults(chunksWithPercents)
-        setResults(final)
+        
       })
     }, [])
+
+    useEffect(()=> {
+      const chunksWithPercents = addPercents(chunkRankings(rankings, criteria.length))
+        const semiFinal = finalResults(chunksWithPercents)
+        const final = semiFinal.map(item => item.final)
+        const finalLabels = semiFinal.map(item => item.option)
+        console.log('final', final)
+        setResults(final)
+        setLabels(finalLabels)
+    }, [rankings])
 
 
     // customize these better with opacity rgba
@@ -84,10 +93,10 @@ const EndScreen = (props) => {
     };
 
     const barData = {
-      labels: results.map(item => item.option),
+      labels: labels,
       datasets: [{
         label: currentDecision.decision_text,
-        data: results.map(item => item.final),
+        data: results,
         backgroundColor: colors,
         borderColor:["black"],
         borderWidth: 2

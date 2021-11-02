@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Typography, Button, Container, Stack, Paper, Rating} from '@mui/material'
+import { Box, Typography, Button, Container, Stack, Paper, Rating, Divider } from '@mui/material'
 import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
@@ -87,14 +87,18 @@ const ListCriteria = (props) => {
             <>
               <Paper elevation={4} style={{padding: "30px"}}>
               <li key={criterion.criterion_id}>
-                <Stack spacing={1}>
+                <Stack spacing={1} direction="row" justifyContent="space-evenly">
                 <Typography variant="h6">{criterion.criterion_text}</Typography>
+                <Divider orientation="vertical" flexItem />
                 <Typography>{`${criterion.quality} to you.`}</Typography>
+                <Divider orientation="vertical" flexItem />
                 <Rating name="read-only" value={criterion.criterion_importance} readOnly />
-                </Stack>
-                <Box mt={2}>
+                <Divider orientation="vertical" flexItem />
+                
+                
                 <Button variant="contained" color="error" onClick={()=>{handleDelete(criterion.criterion_id)}}>Delete</Button>
-                </Box>
+               
+                </Stack>
               </li>
               </Paper>
             </>

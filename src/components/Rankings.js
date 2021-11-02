@@ -75,6 +75,7 @@ const Rankings = (props) => {
           }}><Button variant="contained">All Done! Click to see your results!</Button></Link>
       </Container>
       }
+      <div className="rankings-container">
       {rankings.map((ranking, index) => {
         const isEnabled = selectedOption !== ""
         return (
@@ -151,6 +152,7 @@ const Rankings = (props) => {
         </form>
         )
       })}
+      </div>
     </>
   
   )
