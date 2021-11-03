@@ -57,11 +57,12 @@ const ListDecisions = () => {
   
     </div>
     
-      <Stack spacing={2} direction="row" flexWrap="wrap" justifyContent="center" alignItems="center">
+      
       <ol>
+        <Stack spacing={2} direction="row" flexWrap="wrap">
       {decisions.map(decision => {
         return (
-          <Paper elevation={4} style={{padding: '30px', marginTop: '10px'}}>
+          <Paper elevation={4} style={{padding: '30px', margin: '10px'}}>
           <li id={decision.decision_id} key={decision.decision_id}>
             <Box mb={2}><Typography variant="h6">{decision.decision_text}</Typography></Box>
             
@@ -85,8 +86,9 @@ const ListDecisions = () => {
           </Paper>
         )
       })}
+        </Stack>
       </ol>
-      </Stack>
+     
     
     </>
   )
