@@ -20,9 +20,10 @@
 
 .option {
   display: flex;
-  margin: 50px auto;
+  margin: 20px auto;
   width: 80%;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .form-margin {
@@ -202,7 +203,7 @@ ul {
 }
 
 .chart-container {
-  width: 50vw;
+  width: 70vw;
   padding: 0 10px;
   border: 10px solid royalblue;
 }

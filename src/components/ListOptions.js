@@ -3,6 +3,10 @@ import { Divider, Typography, Button, Paper, Stack, Container} from '@mui/materi
 import { Link, useLocation, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import DoubleArrowSharpIcon from '@mui/icons-material/DoubleArrowSharp';
+
 const url = "http://localhost:4001"
 
 const ListOptions = (props) => {
@@ -19,7 +23,7 @@ const ListOptions = (props) => {
 
   const [options, setOptions] = useState([])
 
-  const isEnabled = options.length
+  
 
   useEffect(() => {
     console.log("Mounted");
@@ -44,23 +48,23 @@ const ListOptions = (props) => {
   return (
     <>
      <Container>
-      <Typography variant="h6">{currentDecision.decision_text}</Typography>
+      <Typography mt={2} variant="h6">{currentDecision.decision_text}</Typography>
       <Typography>Your options for this decision appear below:</Typography>
     </Container>
     <div className="option">
       <Link to={{
               pathname: `/add-option/for-decision/${id}`,
               state: { currentDecision }
-          }}><Button variant="contained">
-        + Add A New Option
+          }}><Button variant="contained" startIcon={<AddCircleIcon />}>
+        Add A New Option
       </Button></Link>
 
-      <Link to={{
+      {options.length > 0 && <Link to={{
               pathname: `/rankings/for-decision/${id}`,
               state: { currentDecision, criteria }
-          }}><Button variant="contained" disabled={!isEnabled}>
+          }}><Button variant="contained" endIcon={<DoubleArrowSharpIcon/>}>
         I'm Done Adding Options. Take Me To Rankings 
-      </Button></Link>
+      </Button></Link>}
 
     </div>
     <ol className="list">
@@ -74,7 +78,7 @@ const ListOptions = (props) => {
                 <Typography variant="h6">{option.option_text}</Typography>
                 <Divider orientation="vertical" flexItem />
                 
-                <Button variant="contained" color="error" onClick={()=>{handleDelete(option.option_id)}}  alignSelf="flex-end">Delete</Button>
+                <Button variant="contained" startIcon={<DeleteIcon />} color="error" onClick={()=>{handleDelete(option.option_id)}}  alignSelf="flex-end">Delete</Button>
                 </Stack>
               </li>
               </Paper>

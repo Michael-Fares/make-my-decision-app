@@ -48,17 +48,17 @@ const AddCriteria = (props) => {
   return (
     <>
     <Container>
-      <Typography>{`Decision: ${currentDecision.decision_text}`}</Typography>
+      <Typography mt={2}>{`Decision: ${currentDecision.decision_text}`}</Typography>
     </Container>
       <form className="form" onSubmit={handleSubmit}>
           <Box mb={2}>
-            <Typography variant="h6">What Critiera Would You Like To Add To This Decision?</Typography>
+            <Typography variant="h6">What critiera would you like to add to this decision?</Typography>
           </Box>
           
         <Stack spacing={3}>
         <TextField name="criterion" value={criterion} required="true" placeholder="Type Anything!" label="Type Anything!" onChange={(e)=>{handleChange(e)}}/>
         <Box mb={2}>
-            <Typography variant="h6">How Important Is this Critiera To You?</Typography>
+            <Typography variant="h6">How important is this critiera to you?</Typography>
           </Box>
           
           <Stack

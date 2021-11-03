@@ -7,9 +7,9 @@ import { Box,
   Paper, 
   Stack, 
   Container,
-  Step,
-  StepLabel,
-  Pagination,
+  Tabs,
+  Tab,
+  TabPanel,
   PaginationItem, 
   dividerClasses,
   Divider } 
@@ -97,18 +97,23 @@ const EndScreen = (props) => {
       datasets: [{
         label: currentDecision.decision_text,
         data: results,
-        backgroundColor: "#ab6d23",
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor:["black"],
         borderWidth: 2
       }]
     };
+
+    const barOptions = {
+      indexAxis: "y"
+    }
 
   return (
     <>
     <Container>
     <Typography variant="h6" mt={2} mb={2}>{currentDecision.decision_text}</Typography>
   </Container>
-  <Stack direction="row" justifyContent="center" alignItems="space-evenly">
+  <Stack justifyContent="center" alignItems="center">
+    
     <div className="chart-container">
       <Typography>Your options and how they compare out of 100%</Typography>
       <Bar data={barData} />

@@ -23,6 +23,8 @@ import { Box,
 import axios from 'axios'
 import { Link, useLocation, useHistory } from 'react-router-dom'
 
+import DoubleArrowSharpIcon from '@mui/icons-material/DoubleArrowSharp';
+
 const url = "http://localhost:4001"
 
 const Rankings = (props) => {
@@ -62,7 +64,7 @@ const Rankings = (props) => {
     return (
     <>
      <Container>
-      <Typography variant="h6">{currentDecision.decision_text}</Typography>
+      <Typography mt={2} variant="h6">{currentDecision.decision_text}</Typography>
       <Typography>
         Rank each option in this decision on each criteria. Once you have ranked everything, you will see your results!
       </Typography>
@@ -72,7 +74,7 @@ const Rankings = (props) => {
         <Link to={{
               pathname: `/results/for-decision/${id}`,
               state: { currentDecision, criteria }
-          }}><Button variant="contained">All Done! Click to see your results!</Button></Link>
+          }}><Button variant="contained" endIcon={<DoubleArrowSharpIcon/>}>All Done! Click to see your results!</Button></Link>
       </Stack>
       }
       <div className="rankings-container">

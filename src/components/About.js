@@ -1,15 +1,17 @@
 import React from 'react'
 import { Stack,
   Button,
-  Box 
+  Box, Typography 
 } from '@mui/material'
+
+import { Link } from 'react-router-dom'
 
 const About = () => {
   return (
     <div className="form">
-    <h1>Welcome to <i>Make My Decision</i></h1>
-    <h3>A decision making aid and visiualiztion tool</h3>
-    <h3>How it works in 5 simple steps:</h3>
+    <Typography variant="h4">Welcome to <i>Make My Decision</i></Typography>
+    <Typography variant="h6">A decision making aid and visiualiztion tool</Typography>
+    <Typography>How it works in 5 simple steps:</Typography>
     <ol>
       <Stack spacing={2}>
       <li>Enter the decision you need help making.</li>
@@ -19,7 +21,7 @@ const About = () => {
       <li>Click "See my results" and the app will create a visualization of the best option in this decision based on the criteria most important to you.</li>
       </Stack>
     </ol>
-    <Box mt={2}><Button fullWidth={true} variant="contained">Get Started</Button></Box>
+    <Box mt={2}><Link to="/signup"><Button fullWidth={true} variant="contained">Get Started</Button></Link></Box>
     </div>
   )
 }

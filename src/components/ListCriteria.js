@@ -6,6 +6,10 @@ import axios from 'axios'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWeightHanging } from "@fortawesome/free-solid-svg-icons";
 
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import DoubleArrowSharpIcon from '@mui/icons-material/DoubleArrowSharp';
+
 const url = "http://localhost:4001"
 
 
@@ -61,7 +65,7 @@ const ListCriteria = (props) => {
   return (
     <>
     <Container>
-      <Typography variant="h6">{currentDecision.decision_text}</Typography>
+      <Typography mt={2} variant="h6">{currentDecision.decision_text}</Typography>
       <Typography>Criteria important to you in this decision appear below:</Typography>
     </Container>
   
@@ -72,16 +76,16 @@ const ListCriteria = (props) => {
               state: { 
                 currentDecision
               }
-          }}><Button variant="contained">
-        + Add A New Criteria
+          }}><Button variant="contained" startIcon={<AddCircleIcon />}>
+        Add A New Criteria
       </Button></Link>
 
-      <Link to={{
+      {criteria.length > 0 && <Link to={{
               pathname: `/list-options/for-decision/${id}`,
               state: { currentDecision , criteria }
-          }}><Button variant="contained" disabled={!isEnabled}>
+          }}><Button variant="contained" endIcon={<DoubleArrowSharpIcon/>}>
         I'm Done Adding Criteria, Take Me To Options 
-      </Button></Link>
+      </Button></Link>}
 
     </div>
     <ol className="list">
@@ -103,7 +107,7 @@ const ListCriteria = (props) => {
                 <Divider orientation="vertical" flexItem />
                 
                 
-                <Button variant="contained" color="error" onClick={()=>{handleDelete(criterion.criterion_id)}}>Delete</Button>
+                <Button variant="contained" startIcon={<DeleteIcon />} color="error" onClick={()=>{handleDelete(criterion.criterion_id)}}>Delete</Button>
                
                 </Stack>
               </li>
