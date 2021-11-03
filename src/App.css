@@ -209,6 +209,11 @@ ul {
   color: #ab6d23;
 }
 
+.card-weight {
+  color: #ab6d23;
+  opacity: 0.8;
+}
+
 .chart-container {
   width: 70vw;
   padding: 0 10px;

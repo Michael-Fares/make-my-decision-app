@@ -88,26 +88,28 @@ const ListCriteria = (props) => {
       </Button></Link>}
 
     </div>
-    <ol className="list">
-      <Stack spacing={3}>
+    <ol>
+      <Stack spacing={2} direction="row" flexWrap="wrap">
         {criteria.map(criterion => {
           return (
             <>
-              <Paper elevation={4} style={{padding: "30px"}}>
+              <Paper elevation={4} style={{padding: "30px", margin: "10px"}}>
               <li key={criterion.criterion_id}>
-                <Stack spacing={1} direction="row" justifyContent="space-evenly">
-                <Typography variant="h6">{criterion.criterion_text}</Typography>
-                <Divider orientation="vertical" flexItem />
-                <Typography>{`${criterion.quality} to you.`}</Typography>
-                <Divider orientation="vertical" flexItem />
-                <FontAwesomeIcon
-                  className={criterion.class}
-                  icon={faWeightHanging}
-                />
-                <Divider orientation="vertical" flexItem />
-                
-                
-                <Button variant="contained" startIcon={<DeleteIcon />} color="error" onClick={()=>{handleDelete(criterion.criterion_id)}}>Delete</Button>
+                <Stack spacing={3}>
+                  <Stack spacing={5} direction="row" justifyContent="space-between">
+                    <Typography variant="h6">{criterion.criterion_text}</Typography>
+                    <FontAwesomeIcon
+                        className={`${criterion.class} card-weight`}
+                        icon={faWeightHanging}
+                      />
+                  </Stack>
+                    <Divider />
+                    <Typography>{`${criterion.quality} to you.`}</Typography>
+                    <Divider />
+                 
+                  
+                  
+                  <Button startIcon={<DeleteIcon />} color="error" onClick={()=>{handleDelete(criterion.criterion_id)}}>Delete</Button>
                
                 </Stack>
               </li>

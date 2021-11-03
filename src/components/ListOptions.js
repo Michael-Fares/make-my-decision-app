@@ -67,18 +67,18 @@ const ListOptions = (props) => {
       </Button></Link>}
 
     </div>
-    <ol className="list">
-      <Stack spacing={3}>
+    <ol>
+      <Stack spacing={2} direction="row" flexWrap="wrap">
         {options.map(option => {
           return (
             <>
-              <Paper elevation={4} style={{padding: "30px"}}>
+              <Paper elevation={4} style={{padding: "30px", margin: "10px"}}>
               <li key={option.option_id}>
-                <Stack spacing={1} direction="row" justifyContent="space-evenly">
+                <Stack spacing={3} justifyContent="space-evenly">
                 <Typography variant="h6">{option.option_text}</Typography>
-                <Divider orientation="vertical" flexItem />
+                <Divider/>
                 
-                <Button variant="contained" startIcon={<DeleteIcon />} color="error" onClick={()=>{handleDelete(option.option_id)}}  alignSelf="flex-end">Delete</Button>
+                <Button startIcon={<DeleteIcon />} color="error" onClick={()=>{handleDelete(option.option_id)}}  alignSelf="flex-end">Delete</Button>
                 </Stack>
               </li>
               </Paper>

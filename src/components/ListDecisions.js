@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Box, Typography, Button, Paper, Stack, Container, Chip} from '@mui/material'
+import { Box, Typography, Button, Paper, Stack, Container, Chip, Divider} from '@mui/material'
 import { Link } from 'react-router-dom'
 
 import EditIcon from '@mui/icons-material/Edit';
@@ -78,8 +78,9 @@ const ListDecisions = () => {
               pathname: `/list-criteria/for-decision/${decision.decision_id}`,
               state: { decisions }
           }}
-          ><Button variant="contained" startIcon={<EditIcon />}>Manage </Button></Link>
-            <Button variant="contained" startIcon={<DeleteIcon />} color="error" onClick={()=>{handleDelete(decision.decision_id)}}>Delete</Button>
+          >
+            <Button  startIcon={<EditIcon />}>Manage </Button></Link>
+            <Button startIcon={<DeleteIcon />} color="error" onClick={()=>{handleDelete(decision.decision_id)}}>Delete</Button>
             </Stack>
             </Box>
           </li>
