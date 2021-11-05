@@ -40,8 +40,8 @@ const Rankings = (props) => {
 
 
   const [rankings, setRankings] = useState([])
-
   const [selectedOption, setSelectedOption] = useState("")
+  const [submitted, setSubmitted] = useState(false)
 
   useEffect(() => {
     axios.get(`${url}/rankings/for-decision/${id}`)
@@ -69,7 +69,7 @@ const Rankings = (props) => {
         Rank each option in this decision on each criteria. Once you have ranked everything, you will see your results!
       </Typography>
     </Container>
-      {!rankings.length && 
+      {!rankings.length && submitted &&
       <Stack alignItems="center" justifyContent="center" direction="row" mt={5}>
         <Link to={{
               pathname: `/results/for-decision/${id}`,
@@ -97,6 +97,7 @@ const Rankings = (props) => {
                   .then(res => console.log(res)).then(setSelectedOption("")).then(() => handleDelete(index))
                   .catch(err => console.log(err))
                 }
+                setSubmitted(true)
             }
           }>
               <Paper elevation={4} style={{padding: "30px"}}>

@@ -215,7 +215,6 @@ ul {
 }
 
 .chart-container {
-  width: 70vw;
-  padding: 0 10px;
-  border: 10px solid royalblue;
+  width: 40%;
+  margin: 10px 0;
 }

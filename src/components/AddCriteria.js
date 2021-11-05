@@ -48,7 +48,7 @@ const AddCriteria = (props) => {
   return (
     <>
     <Container>
-      <Typography mt={2}>{`Decision: ${currentDecision.decision_text}`}</Typography>
+      <Typography variant="h6" mt={2}>{`${currentDecision.decision_text}`}</Typography>
     </Container>
       <form className="form" onSubmit={handleSubmit}>
           <Box mb={2}>

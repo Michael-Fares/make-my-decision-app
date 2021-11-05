@@ -8,7 +8,7 @@ import { faWeightHanging } from "@fortawesome/free-solid-svg-icons";
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import DoubleArrowSharpIcon from '@mui/icons-material/DoubleArrowSharp';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 const url = "http://localhost:4001"
 
@@ -83,7 +83,7 @@ const ListCriteria = (props) => {
       {criteria.length > 0 && <Link to={{
               pathname: `/list-options/for-decision/${id}`,
               state: { currentDecision , criteria }
-          }}><Button variant="contained" endIcon={<DoubleArrowSharpIcon/>}>
+          }}><Button variant="contained" endIcon={<ArrowRightIcon/>}>
         I'm Done Adding Criteria, Take Me To Options 
       </Button></Link>}
 

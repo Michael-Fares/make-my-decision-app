@@ -1,33 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation, useHistory } from 'react-router-dom'
 import axios from 'axios'
-import { Box, 
+import { 
   Typography, 
   Button, 
-  Paper, 
   Stack, 
   Container,
-  Tabs,
-  Tab,
-  TabPanel,
-  PaginationItem, 
-  dividerClasses,
-  Divider } 
-  from '@mui/material'
+ } from '@mui/material'
 import {
   calculateCriteriaWeightings,
   chunkRankings,
   finalResults
 } from '../math.js'
 import { Doughnut, Bar } from 'react-chartjs-2';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+
+const screen = window.location.href
 
 const url = "http://localhost:4001"
 
 
+
 const EndScreen = (props) => {
-  const location = useLocation()
-  const history = useHistory()
   const currentDecision = props.location.state.currentDecision
+  console.log(process.env.REACT_APP_API_KEY)
+  console.log(window.location.href)
 
   // current decision id
   const id = currentDecision.decision_id
@@ -79,13 +76,32 @@ const EndScreen = (props) => {
         setLabels(finalLabels)
     }, [rankings])
 
+    const handleScreenshot = (e) => {
+      e.preventDefault()
+      axios.get(`https://api.screenshotmachine.com?
+      key=${process.env.REACT_APP_API_KEY}
+      &url=${screen}
+      &dimension=1024xfull
+      &format=png`).then((res)=>console.log('response',res))
+    }
+
 
     // customize these better with opacity rgba
-    const colors = ["red", "orange", "blue", "green", "yellow", "gray", "teal", "lightseagreen"]
+    const colors =  [
+      '#FF0000',
+      '#5C7AEA',
+      '#34BE82',
+      '#FFA900',
+      '#C6D57E',
+      '#88E0EF',
+      '#2F86A6',
+      '#911F27',
+      '#FFCC66',
+      '#0E918C'
+    ]
     const doughnutData = {
       labels: weightings.map(item => item.criterion),
       datasets: [{
-        label: 'My First Dataset',
         data: weightings.map(item => item.weightingPercent),
         backgroundColor: colors,
         hoverOffset: 4
@@ -95,7 +111,7 @@ const EndScreen = (props) => {
     const barData = {
       labels: labels,
       datasets: [{
-        label: currentDecision.decision_text,
+        label: `Comparison of your options. 100% is the "perfect" choice.`,
         data: results,
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor:["black"],
@@ -103,24 +119,48 @@ const EndScreen = (props) => {
       }]
     };
 
-    const barOptions = {
-      indexAxis: "y"
-    }
+    const plugins = [{
+      beforeDraw: function(chart) {
+       const width = chart.width,
+           height = chart.height,
+           ctx = chart.ctx;
+           ctx.restore();
+           const fontSize = (height / 1000).toFixed(2);
+           ctx.font = fontSize + "sans-serif";
+           ctx.textBaseline = "top";
+           const text = `Weighted criteria out of 100%`,
+           textX = Math.round((width - ctx.measureText(text).width) / 2),
+           textY = height / 2;
+           ctx.fillText(text, textX, textY);
+           ctx.save();
+      } 
+    }]
+
 
   return (
     <>
     <Container>
-    <Typography variant="h6" mt={2} mb={2}>{currentDecision.decision_text}</Typography>
+      <Stack spacing={1} direction="row" alignItems="center" justifyContent="space-between">     
+      <Typography variant="h6" mt={2} mb={2}>{currentDecision.decision_text}</Typography>
+      <Typography variant="caption" mt={2} mb={2}>Your best option based on the proportional weighting of your critiera</Typography>
+        
+          <a href={`http://api.screenshotlayer.com/api/capture?access_key=${process.env.REACT_APP_API_KEY}&url=${screen}
+          &viewport=1440x900`} target="blank"
+         >  
+          <Button startIcon={<PhotoCameraIcon/>} variant="contained"
+          >Take a screenshot</Button>
+        </a>
+    </Stack>
   </Container>
-  <Stack justifyContent="center" alignItems="center">
+  <Stack justifyContent="space-evenly" alignItems="flex-start" direction="row" flexWrap="wrap">
     
     <div className="chart-container">
-      <Typography>Your options and how they compare out of 100%</Typography>
-      <Bar data={barData} />
+
+      <Bar data={barData} height={400}/>
     </div>
     <div className="chart-container">
-    <Typography>Your criteria and their propotional weighting out of 100%</Typography>
-      <Doughnut data={doughnutData} />
+   
+      <Doughnut data={doughnutData} plugins={plugins}/>
     </div>
   </Stack>
   </>

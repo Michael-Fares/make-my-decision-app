@@ -40,7 +40,7 @@ const ListDecisions = () => {
       {decisions.length ?
       <Container>
       <Typography mt={2} variant="h6">{`Welcome ${user}! Your saved decisions are here:`}</Typography>
-      <Typography>Click "Manage" to start adding criteria and options!</Typography>
+      <Typography>Click "MANAGE" to start adding criteria and options!</Typography>
       </Container>
       :
       <Container>
