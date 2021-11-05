@@ -15,16 +15,21 @@ import {
 import { Doughnut, Bar } from 'react-chartjs-2';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 
-const screen = window.location.href
+// replace with window.location.href before putting online, otherwise it works
+const screen = "https://michael-fares.medium.com/node-js-interview-questions-part-2-bb36b7bca76e"
 
 const url = "http://localhost:4001"
 
 
 
 const EndScreen = (props) => {
+  const location = useLocation()
+  const history = useHistory()
   const currentDecision = props.location.state.currentDecision
+  console.log('current decision',currentDecision)
   console.log(process.env.REACT_APP_API_KEY)
   console.log(window.location.href)
+  console.log('location',location)
 
   // current decision id
   const id = currentDecision.decision_id
@@ -61,9 +66,6 @@ const EndScreen = (props) => {
       .then((res) => {
         setRankings(res.data)
       })
-      .then(()=>{
-        
-      })
     }, [])
 
     useEffect(()=> {
@@ -78,11 +80,8 @@ const EndScreen = (props) => {
 
     const handleScreenshot = (e) => {
       e.preventDefault()
-      axios.get(`https://api.screenshotmachine.com?
-      key=${process.env.REACT_APP_API_KEY}
-      &url=${screen}
-      &dimension=1024xfull
-      &format=png`).then((res)=>console.log('response',res))
+      axios.get(`https://api.apiflash.com/v1/urltoimage?access_key=${process.env.REACT_APP_API_KEY}&format=png&response_type=json&url=${screen}&height=1080
+      &width=1920`).then((res)=> window.open(res.data.url, '_blank')).catch(err => console.log('error', err))
     }
 
 
@@ -144,19 +143,18 @@ const EndScreen = (props) => {
       <Typography variant="h6" mt={2} mb={2}>{currentDecision.decision_text}</Typography>
       <Typography variant="caption" mt={2} mb={2}>Your best option based on the proportional weighting of your critiera</Typography>
         
-          <a href={`http://api.screenshotlayer.com/api/capture?access_key=${process.env.REACT_APP_API_KEY}&url=${screen}
-          &viewport=1440x900`} target="blank"
-         >  
-          <Button startIcon={<PhotoCameraIcon/>} variant="contained"
+         
+         
+          <Button onClick={handleScreenshot} startIcon={<PhotoCameraIcon/>} variant="contained"
           >Take a screenshot</Button>
-        </a>
+        
     </Stack>
   </Container>
   <Stack justifyContent="space-evenly" alignItems="flex-start" direction="row" flexWrap="wrap">
     
     <div className="chart-container">
 
-      <Bar data={barData} height={400}/>
+      <Bar data={barData} height={200}/>
     </div>
     <div className="chart-container">
    
