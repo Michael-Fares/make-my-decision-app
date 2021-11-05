@@ -18,6 +18,10 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 // replace with window.location.href before putting online, otherwise it works
 const screen = "https://michael-fares.medium.com/node-js-interview-questions-part-2-bb36b7bca76e"
 
+// 
+
+
+
 const url = "http://localhost:4001"
 
 
@@ -80,8 +84,14 @@ const EndScreen = (props) => {
 
     const handleScreenshot = (e) => {
       e.preventDefault()
-      axios.get(`https://api.apiflash.com/v1/urltoimage?access_key=${process.env.REACT_APP_API_KEY}&format=png&response_type=json&url=${screen}&height=1080
-      &width=1920`).then((res)=> window.open(res.data.url, '_blank')).catch(err => console.log('error', err))
+      fetch(`https://shot.screenshotapi.net/screenshot?token=${process.env.REACT_APP_API_KEY}&url=${screen}&full_page=true&output=json&file_type=png&wait_for_event=load`, {
+        method: 'GET'
+      })
+      .then(res => res.json())
+      .then((res)=> {
+        console.log('response', res)
+        window.open(res.screenshot, '_blank')
+    })
     }
 
 
