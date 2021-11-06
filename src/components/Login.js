@@ -61,6 +61,7 @@ const Login = (props) => {
      window.location.replace('/decisions')})
     .catch(function (error) {
       console.log('THERE WAS AN ERROR', error);
+      alert("Login failed, incorrect email or password")
     });
 
     // reset the form

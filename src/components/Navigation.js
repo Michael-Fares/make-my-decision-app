@@ -20,7 +20,7 @@ const Navigation = () => {
                         <Link to="/decisions">My Saved Decisions</Link>
                     </li>
                     <li className="nav-list-item">
-                        <Link to="/">About</Link>
+                        <Link to="/">Home</Link>
                     </li>
                     <li className="nav-list-item"
                     onClick={()=>{
@@ -42,10 +42,10 @@ const Navigation = () => {
                 </Typography>
                 <ul className="nav-list">
                     <li className="nav-list-item">
-                        <Link to="/login">Login/Sign Up</Link>
+                        <Link to="/login">Login</Link>
                     </li>
                     <li className="nav-list-item">
-                        <Link to="/">About</Link>
+                        <Link to="/">Home</Link>
                     </li>
                 </ul>
             </Toolbar>

@@ -36,6 +36,10 @@ const SignUp = (props) => {
 
     e.preventDefault()
 
+    if(signup.password !== signup.confirmPassword) {
+      alert("Passwords do not match")
+    }
+
     axios.post(`${url}/users/signup`, {
       first_name: signup.firstName,
       last_name: signup.lastName,

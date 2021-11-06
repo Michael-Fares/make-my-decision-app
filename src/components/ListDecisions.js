@@ -59,8 +59,8 @@ const ListDecisions = () => {
       </Container>
       :
       <Container>
-      <Typography variant="h6">{`Welcome ${user}!`}</Typography>
-      <Typography>You don't have any saved decisions yet, click "Add New Decision" to make your first!</Typography>
+      <Typography mt={2} variant="h6">{`Welcome ${user}!`}</Typography>
+      <Typography mb={2}>You don't have any saved decisions yet, click "Add New Decision" to make your first!</Typography>
       </Container>
       }
       <Container>
@@ -99,9 +99,9 @@ const ListDecisions = () => {
             <Box mb={2}><Typography variant="h6">{decision.decision_text}</Typography></Box>
             
             <Stack spacing={2} direction="row">
-            {decision.criteria_count === 0 ? <Typography><span>Criteria: </span>No critiera for this decision yet</Typography> : 
+            {decision.criteria_count === 0 ? <Typography><span>Criteria: </span>None yet</Typography> : 
             <Typography><span>Criteria:</span> <Chip label={decision.criteria_count} /></Typography>}
-            {decision.option_count === 0 ? <Typography><span>Options: </span>No options for this decision yet</Typography> : 
+            {decision.option_count === 0 ? <Typography><span>Options: </span>None yet</Typography> : 
             <Typography><span>Options:</span> <Chip label={decision.option_count} /></Typography>}
             </Stack>
             <Box mt={2}>
