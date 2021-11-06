@@ -30,10 +30,6 @@ const EndScreen = (props) => {
   const location = useLocation()
   const history = useHistory()
   const currentDecision = props.location.state.currentDecision
-  console.log('current decision',currentDecision)
-  console.log(process.env.REACT_APP_API_KEY)
-  console.log(window.location.href)
-  console.log('location',location)
 
   // current decision id
   const id = currentDecision.decision_id
@@ -81,18 +77,6 @@ const EndScreen = (props) => {
         setResults(final)
         setLabels(finalLabels)
     }, [rankings])
-
-    const handleScreenshot = (e) => {
-      e.preventDefault()
-      fetch(`https://shot.screenshotapi.net/screenshot?token=${process.env.REACT_APP_API_KEY}&url=${screen}&full_page=true&output=json&file_type=png&wait_for_event=load`, {
-        method: 'GET'
-      })
-      .then(res => res.json())
-      .then((res)=> {
-        console.log('response', res)
-        window.open(res.screenshot, '_blank')
-    })
-    }
 
 
     // customize these better with opacity rgba
@@ -149,22 +133,17 @@ const EndScreen = (props) => {
   return (
     <>
     <Container>
-      <Stack spacing={1} direction="row" alignItems="center" justifyContent="space-between">     
-      <Typography variant="h6" mt={2} mb={2}>{currentDecision.decision_text}</Typography>
-      <Typography variant="caption" mt={2} mb={2}>Your best option based on the proportional weighting of your critiera</Typography>
-        
-         
-         
-          <Button onClick={handleScreenshot} startIcon={<PhotoCameraIcon/>} variant="contained"
-          >Take a screenshot</Button>
-        
-    </Stack>
+    
+      <Typography color="secondary" variant="h6" mt={2}>{currentDecision.decision_text}</Typography>
+      <Stack direction="row" alignItems="center" justifyContent="center">
+      <Typography variant="subtitle2" >Your best option based on the proportional weighting of your critiera:</Typography>
+      </Stack>
   </Container>
   <Stack justifyContent="space-evenly" alignItems="flex-start" direction="row" flexWrap="wrap">
     
     <div className="chart-container">
 
-      <Bar data={barData} height={200}/>
+      <Bar data={barData} height={250}/>
     </div>
     <div className="chart-container">
    

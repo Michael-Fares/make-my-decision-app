@@ -51,7 +51,7 @@ const ListDecisions = () => {
 
   return (
     <>
-    <Stack direction="row" justifyContent="space-between" alignItems="center">
+    <Stack spacing={1} direction="row" justifyContent="space-between" alignItems="center">
       {decisions.length ?
       <Container>
       <Typography mt={2} variant="h6">{`Welcome ${user}! Your saved decisions are here:`}</Typography>
@@ -67,10 +67,10 @@ const ListDecisions = () => {
       {quote && 
         <Stack>
           <Typography mt={2}>Your quote of the day:</Typography>
-          <Typography><i>
+          <Typography color="secondary" variant="subtitle2"><i>
             {quote.text}
             </i></Typography>
-            <Typography>
+            <Typography color="secondary" variant="subtitle2">
             {!quote.author ? `- Anonymous` : `- ${quote.author}`}
             </Typography>
           </Stack>}
