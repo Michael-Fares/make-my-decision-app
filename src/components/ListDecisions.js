@@ -12,6 +12,7 @@ const url = "http://localhost:4001"
 const ListDecisions = () => {
   const user = localStorage.getItem('name')
   const [decisions, setDecisions] = useState([])
+  const [quote, setQuote] = useState(null)
 
   // fetch the users decisions from backend when component mounts:
 
@@ -22,6 +23,20 @@ const ListDecisions = () => {
       .then((res) => setDecisions(res.data));
     // The array is called a dependecy array
   }, []);
+
+  // fetch quote of the day
+
+  useEffect(() =>{
+    axios.get("https://type.fit/api/quotes")
+      .then(res => {
+        console.log(res.data)
+        const quotes = res.data
+        console.log('qupotes', quotes)
+        const randomQuote = quotes[Math.floor(Math.random()*quotes.length)]
+        console.log('rand quote', randomQuote)
+        setQuote(randomQuote)
+      })
+  }, [])
 
   const handleDelete = (id) => {
     // delete on front end
@@ -36,11 +51,11 @@ const ListDecisions = () => {
 
   return (
     <>
-   
+    <Stack direction="row" justifyContent="space-between" alignItems="center">
       {decisions.length ?
       <Container>
       <Typography mt={2} variant="h6">{`Welcome ${user}! Your saved decisions are here:`}</Typography>
-      <Typography>Click "MANAGE" to start adding criteria and options!</Typography>
+      <Typography mb={2}>Click "MANAGE" to start adding criteria and options!</Typography>
       </Container>
       :
       <Container>
@@ -48,14 +63,31 @@ const ListDecisions = () => {
       <Typography>You don't have any saved decisions yet, click "Add New Decision" to make your first!</Typography>
       </Container>
       }
-       <div className="option">
-      <Link to="/add-decision">
-      <Button variant="contained" startIcon={<AddCircleIcon />}>
-        Add New Decision
-      </Button>
-      </Link>
-  
-    </div>
+      <Container>
+      {quote && 
+        <Stack>
+          <Typography mt={2}>Your quote of the day:</Typography>
+          <Typography><i>
+            {quote.text}
+            </i></Typography>
+            <Typography>
+            {!quote.author ? `- Anonymous` : `- ${quote.author}`}
+            </Typography>
+          </Stack>}
+          </Container>
+        </Stack>
+        
+
+     <Container>
+    <Stack direction="row" spacing={1} justifyContent="space-between" alignItems="center">
+        <Link to="/add-decision">
+        <Button variant="contained" startIcon={<AddCircleIcon />}>
+          Add New Decision
+        </Button>
+        </Link>
+       
+    </Stack>
+    </Container> 
     
       
       <ol>
