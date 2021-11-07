@@ -6,6 +6,7 @@ import axios from 'axios'
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
 const url = "https://make-my-decision.herokuapp.com"
 
@@ -49,9 +50,12 @@ const ListOptions = (props) => {
     <>
      <Container>
       <Typography mt={2} variant="h6">{currentDecision.decision_text}</Typography>
-      <Typography>Your options for this decision appear below:</Typography>
+      {options.length ?
+        <Typography mb={2}>Your options for this decision appear below:</Typography> :
+        <Typography mb={2}>Your options for this decision will appear below. Click "ADD NEW OPTION" to add your first!</Typography>}
     </Container>
-    <div className="option">
+    <Stack spacing={1} direction="row" justifyContent="space-evenly" alignItems="center">
+    <Button startIcon={<ArrowLeftIcon/>} variant="contained" onClick={()=>{history.goBack()}}>Go Back</Button>
       <Link to={{
               pathname: `/add-option/for-decision/${id}`,
               state: { currentDecision }
@@ -66,7 +70,7 @@ const ListOptions = (props) => {
         I'm Done Adding Options. Take Me To Rankings 
       </Button></Link>}
 
-    </div>
+    </Stack>
     <ol>
       <Stack spacing={2} direction="row" flexWrap="wrap">
         {options.map(option => {

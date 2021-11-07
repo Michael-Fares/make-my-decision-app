@@ -70,7 +70,7 @@ const SignUp = (props) => {
   return (
       <form className="form" onSubmit={handleSubmit}>
         <Stack spacing={1}>
-        <Stack direction="row" spacing={1} alignItems="flex-start" justifyContent="space-evenly">
+        <Stack direction="row" spacing={1} alignItems="center" justifyContent="space-evenly">
           <Typography mb={2} variant="h5">Sign Up</Typography>
           <Divider orientation="vertical" flexItem/>
           <Typography mb={2}>Already have an account?  <Link to='/login'><span className="link-span">Login</span></Link></Typography>

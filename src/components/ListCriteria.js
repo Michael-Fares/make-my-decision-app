@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Box, Typography, Button, Container, Stack, Paper, Divider } from '@mui/material'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,12 +9,13 @@ import { faWeightHanging } from "@fortawesome/free-solid-svg-icons";
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
 const url = "https://make-my-decision.herokuapp.com"
 
 
 const ListCriteria = (props) => {
-
+  const history = useHistory()
   const location = useLocation()
   const id = props.match.params.id
   const decisions = props.location.state.decisions
@@ -66,11 +67,15 @@ const ListCriteria = (props) => {
     <>
     <Container>
       <Typography mt={2} variant="h6">{currentDecision.decision_text}</Typography>
-      <Typography>Criteria important to you in this decision appear below:</Typography>
+      {criteria.length ?
+        <Typography mb={2}>Criteria important to you in this decision appear below:</Typography> :
+        <Typography mb={2}>Criteria important to you in this decision will appear below. Click "ADD A NEW CRITERIA" to add your first!</Typography>
+        }
     </Container>
-  
-    <div className="option">
-      
+    
+    <Container>
+    <Stack spacing={1} direction="row" justifyContent="space-evenly" alignItems="center">
+      <Button startIcon={<ArrowLeftIcon/>} variant="contained" onClick={()=>{history.goBack()}}>Go Back</Button>
       <Link to={{
               pathname: `/add-criteria/for-decision/${id}`,
               state: { 
@@ -87,7 +92,8 @@ const ListCriteria = (props) => {
         I'm Done Adding Criteria, Take Me To Options 
       </Button></Link>}
 
-    </div>
+    </Stack>
+    </Container>
     <ol>
       <Stack spacing={2} direction="row" flexWrap="wrap">
         {criteria.map(criterion => {
@@ -104,7 +110,7 @@ const ListCriteria = (props) => {
                       />
                   </Stack>
                     <Divider />
-                    <Typography>{`${criterion.quality} to you.`}</Typography>
+                    <Typography color="primary">{`${criterion.quality} to you.`}</Typography>
                     <Divider />
                  
                   

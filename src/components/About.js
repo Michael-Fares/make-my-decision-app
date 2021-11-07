@@ -6,16 +6,15 @@ import { Stack,
 
 import { Link } from 'react-router-dom'
 
-import image from '../images/decisionimage.jpg'
-
 const About = () => {
   return (
+    <>
     <Stack direction="row" spacing={5} alignItems="space-evenly" justifyContent="center">
         <div className="home-container">
-        <Typography color="secondary" variant="h4" mt={2}>Welcome to <i>Make My Decision</i>!</Typography>
+        <Typography color="secondary" variant="h4" mt={2}>Welcome to <i>Make My Decision</i> !</Typography>
        
-        <Typography color="secondary" variant="h6">A decision making aid and visiualization tool</Typography>
-        <Typography>How it works in 5 simple steps:</Typography>
+        <Typography color="primary" variant="h5">A decision making aid and visiualization tool</Typography>
+        <Typography color="primary" variant="h6">How it works:</Typography>
         <ol>
           <Stack spacing={1}>
           <Typography color="secondary"><li>Enter the decision you need help making.</li>
@@ -30,6 +29,12 @@ const About = () => {
         <div className="img-container">
         </div>
     </Stack>
+    <Container>
+      <Stack spacing={1} direction="row" justifyContent="flex-end" alignItems="center">
+       <Typography color="primary" mt={4}><i>- Emotions wane. Reasons remain.</i></Typography>
+      </Stack>
+    </Container>
+  </>
   )
 }
 

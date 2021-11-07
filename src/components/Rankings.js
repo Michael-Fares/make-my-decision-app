@@ -70,7 +70,7 @@ const Rankings = (props) => {
       </Typography>
     </Container>
       {!rankings.length && submitted &&
-      <Stack alignItems="center" justifyContent="center" direction="row" mt={5}>
+      <Stack alignItems="center" justifyContent="center" mt={15}>
         <Link to={{
               pathname: `/results/for-decision/${id}`,
               state: { currentDecision, criteria }

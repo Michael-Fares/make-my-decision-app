@@ -60,17 +60,17 @@ const ListDecisions = () => {
       :
       <Container>
       <Typography mt={2} variant="h6">{`Welcome ${user}!`}</Typography>
-      <Typography mb={2}>You don't have any saved decisions yet, click "Add New Decision" to make your first!</Typography>
+      <Typography mb={2}>You don't have any saved decisions yet. click "ADD NEW DECISION" to make your first!</Typography>
       </Container>
       }
       <Container>
       {quote && 
         <Stack>
           <Typography mt={2}>Your quote of the day:</Typography>
-          <Typography color="secondary" variant="subtitle2"><i>
+          <Typography color="primary" variant="subtitle2"><i>
             {quote.text}
             </i></Typography>
-            <Typography color="secondary" variant="subtitle2">
+            <Typography mb={2} color="primary" variant="subtitle2">
             {!quote.author ? `- Anonymous` : `- ${quote.author}`}
             </Typography>
           </Stack>}
@@ -79,7 +79,7 @@ const ListDecisions = () => {
         
 
      <Container>
-    <Stack direction="row" spacing={1} justifyContent="space-between" alignItems="center">
+    <Stack direction="row" spacing={1} justifyContent="center" alignItems="center">
         <Link to="/add-decision">
         <Button variant="contained" startIcon={<AddCircleIcon />}>
           Add New Decision
@@ -99,10 +99,10 @@ const ListDecisions = () => {
             <Box mb={2}><Typography variant="h6">{decision.decision_text}</Typography></Box>
             
             <Stack spacing={2} direction="row">
-            {decision.criteria_count === 0 ? <Typography><span>Criteria: </span>None yet</Typography> : 
-            <Typography><span>Criteria:</span> <Chip label={decision.criteria_count} /></Typography>}
-            {decision.option_count === 0 ? <Typography><span>Options: </span>None yet</Typography> : 
-            <Typography><span>Options:</span> <Chip label={decision.option_count} /></Typography>}
+            {decision.criteria_count === 0 ? <Typography color="primary">Criteria: <span className="black">None yet</span></Typography> : 
+            <Typography color="primary"><span>Criteria:</span> <Chip label={decision.criteria_count} /></Typography>}
+            {decision.option_count === 0 ? <Typography color="primary">Options: <span className="black">None yet</span></Typography> : 
+            <Typography color="primary"><span>Options:</span> <Chip label={decision.option_count} /></Typography>}
             </Stack>
             <Box mt={2}>
             <Stack direction="row" spacing={4}>
@@ -111,8 +111,8 @@ const ListDecisions = () => {
               state: { decisions }
           }}
           >
-            <Button  startIcon={<EditIcon />}>Manage </Button></Link>
-            <Button startIcon={<DeleteIcon />} color="error" onClick={()=>{handleDelete(decision.decision_id)}}>Delete</Button>
+            <Button variant="outlined" startIcon={<EditIcon />}>Manage </Button></Link>
+            <Button variant="outlined" startIcon={<DeleteIcon />} color="error" onClick={()=>{handleDelete(decision.decision_id)}}>Delete</Button>
             </Stack>
             </Box>
           </li>

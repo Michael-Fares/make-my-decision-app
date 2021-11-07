@@ -5,7 +5,8 @@ import {
   Box,
   Typography,
   Stack, 
-  Container
+  Container,
+  Paper
  } from "@mui/material";
  import { Link, useLocation, useHistory } from 'react-router-dom'
  import axios from 'axios'
@@ -46,6 +47,7 @@ const AddOption = (props) => {
       <Typography mt={2}>{`Decision: ${currentDecision.decision_text}`}</Typography>
     </Container>
       <form className="form" onSubmit={handleSubmit}>
+      <Paper elevation={4} style={{padding: "30px"}}>
           <Box mb={2}>
             <Typography variant="h6">What option would you like to add to this decision?</Typography>
           </Box>
@@ -60,6 +62,7 @@ const AddOption = (props) => {
             Add
           </Button>
           </Stack>
+        </Paper>
       </form>
       </>
   )

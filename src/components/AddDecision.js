@@ -5,7 +5,8 @@ import {
   TextField,
   Box,
   Typography,
-  Stack
+  Stack,
+  Paper
  } from "@mui/material";
  import { Link, useHistory } from 'react-router-dom'
 
@@ -43,6 +44,7 @@ const AddDecision = (props) => {
 
   return (
       <form className="form" onSubmit={handleSubmit}>
+        <Paper elevation={4} style={{padding: "30px"}}>
           <Box mb={2}>
             <Typography variant="h6">What Decision Would You Help Making?</Typography>
           </Box>
@@ -57,6 +59,7 @@ const AddDecision = (props) => {
             Add
           </Button>
           </Stack>
+        </Paper>
       </form>
   )
 }

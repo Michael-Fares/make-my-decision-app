@@ -76,7 +76,7 @@ const Login = (props) => {
   return (
       <form className="form" onSubmit={handleSubmit}>
           <Box mb={2}>
-            <Typography variant="h6">Welcome! Please Login</Typography>
+            <Typography variant="h5">Welcome! Please Login</Typography>
           </Box>
           
         <Stack spacing={1}>

@@ -5,7 +5,8 @@ import {
   Box,
   Typography,
   Stack,
-  Container
+  Container,
+  Paper
  } from "@mui/material";
 
  import { Link, useLocation, useHistory } from 'react-router-dom'
@@ -52,6 +53,7 @@ const AddCriteria = (props) => {
       <Typography variant="h6" mt={2}>{`${currentDecision.decision_text}`}</Typography>
     </Container>
       <form className="form" onSubmit={handleSubmit}>
+      <Paper elevation={4} style={{padding: "40px"}}>
           <Box mb={2}>
             <Typography variant="h6">What critiera would you like to add to this decision?</Typography>
           </Box>
@@ -63,7 +65,7 @@ const AddCriteria = (props) => {
           </Box>
           
           <Stack
-            spacing={10}
+            spacing={8}
             direction="row"
             justifyContent="center"
             alignItems="center"
@@ -176,7 +178,7 @@ const AddCriteria = (props) => {
             Add
           </Button>
           </Box>
-          
+         </Paper> 
       </form>
     </>
   )
