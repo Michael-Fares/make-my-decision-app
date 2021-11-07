@@ -51,7 +51,7 @@ const AddCriteria = (props) => {
     <Container>
       <Typography variant="h6" mt={2}>{`${currentDecision.decision_text}`}</Typography>
     </Container>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form">
       <Paper elevation={4} style={{padding: "40px"}}>
           <Box mb={2}>
             <Typography variant="h6">What critiera would you like to add to this decision?</Typography>
@@ -173,6 +173,7 @@ const AddCriteria = (props) => {
             className="form-margin"
             type="submit"
             disabled={!isEnabled}
+            onMouseDown={handleSubmit}
             >
             Add
           </Button>

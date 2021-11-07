@@ -45,7 +45,7 @@ const AddOption = (props) => {
     <Container>
       <Typography mt={2}>{`Decision: ${currentDecision.decision_text}`}</Typography>
     </Container>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form">
       <Paper elevation={4} style={{padding: "30px"}}>
           <Box mb={2}>
             <Typography variant="h6">What option would you like to add to this decision?</Typography>
@@ -57,6 +57,7 @@ const AddOption = (props) => {
             variant="contained"
             className="form-margin"
             type="submit"
+            onMouseDown={handleSubmit}
             >
             Add
           </Button>

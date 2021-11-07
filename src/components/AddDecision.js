@@ -41,7 +41,7 @@ const AddDecision = (props) => {
   }
 
   return (
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" >
         <Paper elevation={4} style={{padding: "30px"}}>
           <Box mb={2}>
             <Typography variant="h6">What Decision Would You Help Making?</Typography>
@@ -53,6 +53,7 @@ const AddDecision = (props) => {
             variant="contained"
             className="form-margin"
             type="submit"
+            onMouseDown={handleSubmit}
             >
             Add
           </Button>
