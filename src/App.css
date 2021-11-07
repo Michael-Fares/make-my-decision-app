@@ -49,10 +49,12 @@
 
 .nav-list-item {
   margin: auto 20px;
+  transition: ease .3s all;
 }
 
 .nav-list-item:hover {
   cursor: pointer;
+  text-shadow: 2px 2px 2px black;
 }
 
 a {

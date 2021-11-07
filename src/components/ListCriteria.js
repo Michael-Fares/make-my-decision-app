@@ -10,7 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
-const url = "http://localhost:4001"
+const url = "https://make-my-decision.herokuapp.com"
 
 
 const ListCriteria = (props) => {

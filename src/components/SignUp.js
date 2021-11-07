@@ -4,12 +4,13 @@ import {
   TextField,
   Box,
   Typography,
-  Stack
+  Stack,
+  Divider
  } from "@mui/material";
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios';
 
-const url = "http://localhost:4001"
+const url = "https://make-my-decision.herokuapp.com"
 
 const SignUp = (props) => {
 
@@ -68,10 +69,13 @@ const SignUp = (props) => {
 
   return (
       <form className="form" onSubmit={handleSubmit}>
-          <Box mb={4}>
-          <Typography>Already have an account?  <Link to='/login'><span className="link-span">Login</span></Link></Typography>
-          </Box>
         <Stack spacing={1}>
+        <Stack direction="row" spacing={1} alignItems="flex-start" justifyContent="space-evenly">
+          <Typography mb={2} variant="h5">Sign Up</Typography>
+          <Divider orientation="vertical" flexItem/>
+          <Typography mb={2}>Already have an account?  <Link to='/login'><span className="link-span">Login</span></Link></Typography>
+        </Stack>
+       
         <TextField name="firstName" value={signup.firstName} required="true" placeholder="First Name" label="First Name" onChange={(e) => handleChange(e)}/>
         <TextField name="lastName" value={signup.lastName} required="true" placeholder="Last Name" label="Last Name"  onChange={(e) => handleChange(e)}/>
         <TextField name="email" value={signup.email} required="true" placeholder="Email" label="Email" onChange={(e) => handleChange(e)}/>

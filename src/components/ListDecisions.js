@@ -7,7 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import axios from 'axios'
-const url = "http://localhost:4001"
+const url = "https://make-my-decision.herokuapp.com"
 
 const ListDecisions = () => {
   const user = localStorage.getItem('name')

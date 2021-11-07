@@ -18,11 +18,7 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 // replace with window.location.href before putting online, otherwise it works
 const screen = "https://michael-fares.medium.com/node-js-interview-questions-part-2-bb36b7bca76e"
 
-// 
-
-
-
-const url = "http://localhost:4001"
+const url = "https://make-my-decision.herokuapp.com"
 
 
 

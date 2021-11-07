@@ -14,6 +14,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWeightHanging } from "@fortawesome/free-solid-svg-icons";
 
+const url = "https://make-my-decision.herokuapp.com"
 
 const AddCriteria = (props) => {
     const location = useLocation()
@@ -39,7 +40,7 @@ const AddCriteria = (props) => {
 
     const handleSubmit = (e) => {
       e.preventDefault()
-      axios.post(`http://localhost:4001/criteria/for-decision/${id}`, {
+      axios.post(`${url}/criteria/for-decision/${id}`, {
         criterion_text: criterion,
         criterion_importance: selectedOption
       }).then(res => console.log(res)).then(history.goBack())

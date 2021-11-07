@@ -16,7 +16,6 @@ import EndScreen from './components/EndScreen'
 
 
 
-
 // Write checkAuth function here
 // Check the cookies for a cookie called "loggedIn"
 

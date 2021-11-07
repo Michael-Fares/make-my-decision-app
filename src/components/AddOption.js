@@ -10,6 +10,8 @@ import {
  import { Link, useLocation, useHistory } from 'react-router-dom'
  import axios from 'axios'
 
+const url = "https://make-my-decision.herokuapp.com"
+
 const AddOption = (props) => {
   const location = useLocation()
   const history = useHistory()
@@ -28,7 +30,7 @@ const AddOption = (props) => {
     e.preventDefault(e)
 
 
-    axios.post(`http://localhost:4001/options/for-decision/${id}`, 
+    axios.post(`${url}/options/for-decision/${id}`, 
     {
       option_text: option
     })

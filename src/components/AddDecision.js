@@ -15,7 +15,7 @@ const token = localStorage.getItem('token')
 
 axios.defaults.headers.common['authorization'] = `Bearer ${token}`;
 
- 
+const url = "https://make-my-decision.herokuapp.com" 
 
 const AddDecision = (props) => {
   let history = useHistory();
@@ -31,7 +31,7 @@ const AddDecision = (props) => {
     e.preventDefault(e)
 
 
-    axios.post('http://localhost:4001/decisions', 
+    axios.post(`${url}/decisions`, 
     {
       decision_text: decision
     })

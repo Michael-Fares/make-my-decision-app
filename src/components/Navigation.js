@@ -12,10 +12,10 @@ const Navigation = () => {
         // show if logged in
         <AppBar position="relative">
             <Toolbar className="navbar">
-                <Typography variant="h5" style={{ flexGrow: "1" }}>
+                <Typography variant="h4" style={{ flexGrow: "1" }}>
                     <i>Make My Decision</i>
                 </Typography>
-                <ul className="nav-list">
+                <Typography><ul className="nav-list">
                     <li className="nav-list-item">
                         <Link to="/decisions">My Saved Decisions</Link>
                     </li>
@@ -30,7 +30,7 @@ const Navigation = () => {
                     }}>
                         Logout
                     </li>
-                </ul>
+                </ul></Typography>
             </Toolbar>
         </AppBar>
     ) : (
@@ -40,14 +40,14 @@ const Navigation = () => {
                 <Typography variant="h5" style={{ flexGrow: "1" }}>
                     <i>Make My Decision</i>
                 </Typography>
-                <ul className="nav-list">
+                <Typography><ul className="nav-list">
                     <li className="nav-list-item">
                         <Link to="/login">Login</Link>
                     </li>
                     <li className="nav-list-item">
                         <Link to="/">Home</Link>
                     </li>
-                </ul>
+                </ul></Typography>
             </Toolbar>
         </AppBar>
 

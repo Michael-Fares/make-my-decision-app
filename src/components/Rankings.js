@@ -25,7 +25,7 @@ import { Link, useLocation, useHistory } from 'react-router-dom'
 
 import DoubleArrowSharpIcon from '@mui/icons-material/DoubleArrowSharp';
 
-const url = "http://localhost:4001"
+const url = "https://make-my-decision.herokuapp.com"
 
 const Rankings = (props) => {
   const location = useLocation()
