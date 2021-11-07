@@ -6,6 +6,9 @@ import { Stack,
 
 import { Link } from 'react-router-dom'
 
+import { checkAuth } from '../Router'
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+
 const About = () => {
   return (
     <>
@@ -24,7 +27,8 @@ const About = () => {
           <li>Click "See my results" and the app will create a visualization of the best option in this decision based on the criteria most important to you.</li></Typography>
           </Stack>
         </ol>
-        <Box mt={2}><Link to="/signup"><Button fullWidth={true} variant="contained">Get Started!</Button></Link></Box>
+        {checkAuth() ? <Box mt={2}><Link to="/decisions"><Button endIcon={<ArrowRightIcon/>} fullWidth={true} variant="contained">Go to my Saved Decisions</Button></Link></Box>  
+        : <Box mt={2}><Link to="/signup"><Button fullWidth={true} variant="contained">Get Started!</Button></Link></Box>}
         </div>
         <div className="img-container">
         </div>
