@@ -49,14 +49,14 @@ const Router = () => {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
             {/* Protect this route */}
-            <Route path="/decisions" component={ListDecisions} />
-            <Route path="/add-decision" component={AddDecision} />
-            <Route path="/add-criteria/for-decision/:id" component={AddCriteria} />
-            <Route path="/list-criteria/for-decision/:id" component={ListCriteria} />
-            <Route path="/list-options/for-decision/:id" component={ListOptions} />
-            <Route path="/add-option/for-decision/:id" component={AddOption} />
-            <Route path="/rankings/for-decision/:id" component={Rankings} />
-            <Route path="/results/for-decision/:id" component={EndScreen} />
+            <ProtectedRoute path="/decisions" component={ListDecisions} />
+            <ProtectedRoute path="/add-decision" component={AddDecision} />
+            <ProtectedRoute path="/add-criteria/for-decision/:id" component={AddCriteria} />
+            <ProtectedRoute path="/list-criteria/for-decision/:id" component={ListCriteria} />
+            <ProtectedRoute path="/list-options/for-decision/:id" component={ListOptions} />
+            <ProtectedRoute path="/add-option/for-decision/:id" component={AddOption} />
+            <ProtectedRoute path="/rankings/for-decision/:id" component={Rankings} />
+            <ProtectedRoute path="/results/for-decision/:id" component={EndScreen} />
         </Switch>
     );
 };

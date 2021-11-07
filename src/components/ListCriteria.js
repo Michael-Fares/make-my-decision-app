@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Typography, Button, Container, Stack, Paper, Divider } from '@mui/material'
-import { Link, useLocation, useHistory } from 'react-router-dom'
+import { Typography, Button, Container, Stack, Paper, Divider } from '@mui/material'
+import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,7 +16,6 @@ const url = "https://make-my-decision.herokuapp.com"
 
 const ListCriteria = (props) => {
   const history = useHistory()
-  const location = useLocation()
   const id = props.match.params.id
   const decisions = props.location.state.decisions
   const currentDecision = decisions.find(decision => decision.decision_id == id)

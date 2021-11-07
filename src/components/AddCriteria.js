@@ -9,7 +9,7 @@ import {
   Paper
  } from "@mui/material";
 
- import { Link, useLocation, useHistory } from 'react-router-dom'
+ import { useHistory } from 'react-router-dom'
  import axios from 'axios'
  
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,7 +18,6 @@ import { faWeightHanging } from "@fortawesome/free-solid-svg-icons";
 const url = "https://make-my-decision.herokuapp.com"
 
 const AddCriteria = (props) => {
-    const location = useLocation()
     const history = useHistory()
     const currentDecision = props.location.state.currentDecision
 
@@ -44,7 +43,7 @@ const AddCriteria = (props) => {
       axios.post(`${url}/criteria/for-decision/${id}`, {
         criterion_text: criterion,
         criterion_importance: selectedOption
-      }).then(res => res).then(history.goBack())
+      }).then(res => res).then(setCriterion(""), setSelectedOption("")).then(history.goBack())
     }
   
   return (

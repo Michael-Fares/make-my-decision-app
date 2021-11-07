@@ -15,15 +15,13 @@ import { Box,
     faSmileBeam
   } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios'
-import { Link, useLocation, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import DoubleArrowSharpIcon from '@mui/icons-material/DoubleArrowSharp';
 
 const url = "https://make-my-decision.herokuapp.com"
 
 const Rankings = (props) => {
-  const location = useLocation()
-  const history = useHistory()
   const currentDecision = props.location.state.currentDecision
 
   const id = currentDecision.decision_id

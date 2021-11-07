@@ -6,15 +6,13 @@ import {
   Typography,
   Stack
  } from "@mui/material";
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 const url = "https://make-my-decision.herokuapp.com"
 
 
-const Login = (props) => {
-
-  let history = useHistory();
+const Login = () => {
 
   const [user, setUser] = useState({
     email: "",

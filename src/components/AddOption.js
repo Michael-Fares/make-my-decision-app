@@ -8,13 +8,12 @@ import {
   Container,
   Paper
  } from "@mui/material";
- import { Link, useLocation, useHistory } from 'react-router-dom'
+ import { useHistory } from 'react-router-dom'
  import axios from 'axios'
 
 const url = "https://make-my-decision.herokuapp.com"
 
 const AddOption = (props) => {
-  const location = useLocation()
   const history = useHistory()
   const currentDecision = props.location.state.currentDecision
 
@@ -35,7 +34,7 @@ const AddOption = (props) => {
     {
       option_text: option
     })
-      .then(res => res).then(history.goBack())
+      .then(res => res).then(setOption("")).then(history.goBack())
       .catch(err => console.log('there was an error', err))
 
     setOption("")

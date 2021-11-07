@@ -8,9 +8,7 @@ import {
   Stack,
   Paper
  } from "@mui/material";
- import { Link, useHistory } from 'react-router-dom'
-
- import cookie from 'cookie'
+import { useHistory } from 'react-router-dom'
 
 const token = localStorage.getItem('token')
 
@@ -36,10 +34,10 @@ const AddDecision = (props) => {
     {
       decision_text: decision
     })
-      .then(res => res).then(history.goBack())
+      .then(res => res).then(setDecision("")).then(history.goBack())
       .catch(err => console.log('there was an error', err))
 
-    setDecision("")
+    
   }
 
   return (

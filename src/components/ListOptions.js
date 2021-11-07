@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Divider, Typography, Button, Paper, Stack, Container} from '@mui/material'
-import { Link, useLocation, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -11,7 +11,6 @@ import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 const url = "https://make-my-decision.herokuapp.com"
 
 const ListOptions = (props) => {
-  const location = useLocation()
   const history = useHistory()
   const currentDecision = props.location.state.currentDecision
 
