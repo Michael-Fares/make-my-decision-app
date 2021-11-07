@@ -88,7 +88,7 @@ const ListDecisions = () => {
       
       <ol>
         <Stack spacing={2} direction="row" flexWrap="wrap">
-      {decisions.map(decision => {
+      {decisions.length > 0 && decisions.map(decision => {
         return (
           <Paper elevation={4} style={{padding: '30px', margin: '10px'}}>
           <li id={decision.decision_id} key={decision.decision_id}>

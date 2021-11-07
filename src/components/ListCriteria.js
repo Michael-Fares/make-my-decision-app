@@ -90,7 +90,7 @@ const ListCriteria = (props) => {
     </Container>
     <ol>
       <Stack spacing={2} direction="row" flexWrap="wrap">
-        {criteria.map(criterion => {
+        {criteria.length > 0 && criteria.map(criterion => {
           return (
             <>
               <Paper elevation={4} style={{padding: "30px", margin: "10px"}}>

@@ -71,7 +71,7 @@ const ListOptions = (props) => {
     </Stack>
     <ol>
       <Stack spacing={2} direction="row" flexWrap="wrap">
-        {options.map(option => {
+        {options.length > 0 && options.map(option => {
           return (
             <>
               <Paper elevation={4} style={{padding: "30px", margin: "10px"}}>
