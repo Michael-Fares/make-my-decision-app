@@ -12,7 +12,7 @@ const Navigation = () => {
         // show if logged in
         <AppBar position="relative">
             <Toolbar className="navbar">
-                <Typography variant="h4" style={{ flexGrow: "1" }}>
+                <Typography variant="h5" style={{ flexGrow: "1" }}>
                     <i>Make My Decision</i>
                 </Typography>
                 <Typography><ul className="nav-list">

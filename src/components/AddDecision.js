@@ -36,7 +36,7 @@ const AddDecision = (props) => {
     {
       decision_text: decision
     })
-      .then(res => console.log(res)).then(history.push('/decisions'))
+      .then(res => res).then(history.push('/decisions'))
       .catch(err => console.log('there was an error', err))
 
     setDecision("")

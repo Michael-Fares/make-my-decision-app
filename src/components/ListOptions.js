@@ -27,10 +27,8 @@ const ListOptions = (props) => {
   
 
   useEffect(() => {
-    console.log("Mounted");
     axios.get(`${url}/options/for-decision/${id}`)
       .then((res) => {
-        console.log(res)
         setOptions(res.data)
       })
     }, [])
@@ -41,7 +39,7 @@ const ListOptions = (props) => {
       setOptions(updatedList)
       // delete on backend
       axios.delete(`${url}/options/${id}`)
-      .then(res => console.log(res))
+      .then(res => res)
       .catch(err => console.log('There was an error', err))
   
     }

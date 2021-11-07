@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useLocation, useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { 
   Typography, 
-  Button, 
   Stack, 
   Container,
  } from '@mui/material'
@@ -13,18 +11,12 @@ import {
   finalResults
 } from '../math.js'
 import { Doughnut, Bar } from 'react-chartjs-2';
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-
-// replace with window.location.href before putting online, otherwise it works
-const screen = "https://michael-fares.medium.com/node-js-interview-questions-part-2-bb36b7bca76e"
 
 const url = "https://make-my-decision.herokuapp.com"
 
 
 
 const EndScreen = (props) => {
-  const location = useLocation()
-  const history = useHistory()
   const currentDecision = props.location.state.currentDecision
 
   // current decision id
@@ -69,7 +61,6 @@ const EndScreen = (props) => {
         const semiFinal = finalResults(chunksWithPercents)
         const final = semiFinal.map(item => item.final)
         const finalLabels = semiFinal.map(item => item.option)
-        console.log('final', final)
         setResults(final)
         setLabels(finalLabels)
     }, [rankings])

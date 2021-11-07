@@ -35,7 +35,7 @@ const AddOption = (props) => {
     {
       option_text: option
     })
-      .then(res => console.log(res)).then(history.goBack())
+      .then(res => res).then(history.goBack())
       .catch(err => console.log('there was an error', err))
 
     setOption("")

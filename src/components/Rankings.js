@@ -5,20 +5,14 @@ import { Box,
   Paper, 
   Stack, 
   Container,
-  Step,
-  StepLabel,
-  Pagination,
-  PaginationItem, 
-  dividerClasses,
-  Divider} from '@mui/material'
+  } from '@mui/material'
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import {
     faAngry,
     faFrownOpen,
     faMeh,
     faGrin,
-    faSmileBeam,
-    faGrinBeam
+    faSmileBeam
   } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios'
 import { Link, useLocation, useHistory } from 'react-router-dom'

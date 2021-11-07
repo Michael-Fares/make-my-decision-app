@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Box, Typography, Button, Paper, Stack, Container, Chip, Divider} from '@mui/material'
+import { Box, Typography, Button, Paper, Stack, Container, Chip } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 import EditIcon from '@mui/icons-material/Edit';
@@ -18,22 +18,18 @@ const ListDecisions = () => {
 
   useEffect(() => {
     const id = localStorage.getItem('id')
-    console.log("Mounted");
     axios.get(`${url}/decisions/for-user/${id}`)
       .then((res) => setDecisions(res.data));
     // The array is called a dependecy array
   }, []);
 
-  // fetch quote of the day
+  // fetch quote of the day from quotes API
 
   useEffect(() =>{
     axios.get("https://type.fit/api/quotes")
       .then(res => {
-        console.log(res.data)
         const quotes = res.data
-        console.log('qupotes', quotes)
         const randomQuote = quotes[Math.floor(Math.random()*quotes.length)]
-        console.log('rand quote', randomQuote)
         setQuote(randomQuote)
       })
   }, [])
@@ -44,7 +40,7 @@ const ListDecisions = () => {
     setDecisions(updatedList)
     // delete on backend
     axios.delete(`${url}/decisions/${id}`)
-    .then(res => console.log(res))
+    .then(res => res)
     .catch(err => console.log('There was an error', err))
 
   }

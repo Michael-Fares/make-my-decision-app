@@ -12,7 +12,7 @@ import axios from 'axios';
 
 const url = "https://make-my-decision.herokuapp.com"
 
-const SignUp = (props) => {
+const SignUp = () => {
 
   let history = useHistory();
 
@@ -33,7 +33,6 @@ const SignUp = (props) => {
   }
   
   const handleSubmit = (e) => {
-    console.log(e)
 
     e.preventDefault()
 
@@ -49,7 +48,7 @@ const SignUp = (props) => {
       confirmPassword: signup.confirmPassword 
     })
     .then(function (response) {
-      console.log('response', response);
+      return response;
     }).then(() => history.push("/login"))
     .catch(function (error) {
       console.log('THERE WAS AN ERROR', error);

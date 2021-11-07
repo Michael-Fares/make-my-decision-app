@@ -29,7 +29,7 @@ const Login = (props) => {
   }
   
   const handleSubmit = (e) => {
-    console.log(e)
+   
 
     e.preventDefault()
 
@@ -43,7 +43,7 @@ const Login = (props) => {
       password: user.password,
     })
     .then(function (response) {
-      console.log('response', response);
+   
       // set current user info in local storage
    
       localStorage.setItem("token", response.data.accessToken);

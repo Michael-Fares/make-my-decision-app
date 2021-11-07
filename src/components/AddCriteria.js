@@ -44,7 +44,7 @@ const AddCriteria = (props) => {
       axios.post(`${url}/criteria/for-decision/${id}`, {
         criterion_text: criterion,
         criterion_importance: selectedOption
-      }).then(res => console.log(res)).then(history.goBack())
+      }).then(res => res).then(history.goBack())
     }
   
   return (

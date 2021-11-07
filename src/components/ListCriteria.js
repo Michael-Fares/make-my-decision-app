@@ -20,17 +20,11 @@ const ListCriteria = (props) => {
   const id = props.match.params.id
   const decisions = props.location.state.decisions
   const currentDecision = decisions.find(decision => decision.decision_id == id)
-  console.log('current decision', currentDecision)
-  console.log('props', props)
-  console.log('id', id)
-
   const [criteria, setCriteria] = useState([])
 
   useEffect(() => {
-    console.log("Mounted");
     axios.get(`${url}/criteria/for-decision/${id}`)
       .then((res) => {
-        console.log(res)
         const rawCriteria = res.data
         const qualitativeCriteria = rawCriteria.map(criterion => {
           if(criterion.criterion_importance === 5) {
@@ -57,7 +51,7 @@ const ListCriteria = (props) => {
     setCriteria(updatedList)
     // delete on backend
     axios.delete(`${url}/criteria/${id}`)
-    .then(res => console.log(res))
+    .then(res => res)
     .catch(err => console.log('There was an error', err))
 
   }
