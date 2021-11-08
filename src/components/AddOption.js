@@ -36,8 +36,6 @@ const AddOption = (props) => {
     })
       .then(res => res).then(setOption("")).then(history.goBack())
       .catch(err => console.log('there was an error', err))
-
-    setOption("")
   }
 
   return (

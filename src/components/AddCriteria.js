@@ -44,6 +44,7 @@ const AddCriteria = (props) => {
         criterion_text: criterion,
         criterion_importance: selectedOption
       }).then(res => res).then(setCriterion(""), setSelectedOption("")).then(history.goBack())
+      .catch(err => console.log('there was an error', err))
     }
   
   return (
