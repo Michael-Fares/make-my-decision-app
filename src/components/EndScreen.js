@@ -121,9 +121,9 @@ const EndScreen = (props) => {
     <>
     <Container>
     
-      <Typography color="secondary" variant="h6" mt={2}>{currentDecision.decision_text}</Typography>
+      <Typography color="primary" variant="h6" mt={2}>{currentDecision.decision_text}</Typography>
       <Stack direction="row" alignItems="center" justifyContent="center">
-      <Typography variant="subtitle2" >Your best option based on the proportional weighting of your critiera:</Typography>
+      <Typography variant="h6" color="secondary">Your best option based on the proportional weighting of your critiera:</Typography>
       </Stack>
   </Container>
   <Stack justifyContent="space-evenly" alignItems="flex-start" direction="row" flexWrap="wrap">

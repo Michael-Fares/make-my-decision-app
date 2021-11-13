@@ -36,7 +36,7 @@ const AddOption = (props) => {
     {
       option_text: option
     })
-      .then(res => console.log(res)).then(setOption("")).then(() => {
+      .then(res => res).then(setOption("")).then(() => {
         setAdding(true)
         setTimeout(() =>
         history.goBack()

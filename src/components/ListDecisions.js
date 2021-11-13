@@ -20,7 +20,6 @@ const ListDecisions = () => {
     const id = localStorage.getItem('id')
     axios.get(`${url}/decisions/for-user/${id}`)
       .then((res) => {
-        console.log('GET Decisions', res)
         setDecisions(res.data)
       });
     // The array is called a dependecy array
@@ -31,7 +30,7 @@ const ListDecisions = () => {
   useEffect(() =>{
     axios.get("https://type.fit/api/quotes")
       .then(res => {
-        const quotes = res.data
+        const quotes = res.data.filter(quote => quote.author !== "Donald Trump")
         const randomQuote = quotes[Math.floor(Math.random()*quotes.length)]
         setQuote(randomQuote)
       })
@@ -50,31 +49,33 @@ const ListDecisions = () => {
 
   return (
     <>
-    <Stack spacing={1} direction="row" justifyContent="space-between" alignItems="center">
+    <Stack spacing={1} direction="row" justifyContent="space-between" alignItems="flex-start">
       {decisions.length ?
-      <Container>
-      <Typography mt={2} variant="h6">{`Welcome ${user}! Your saved decisions are here:`}</Typography>
-      <Typography mb={2}>Click "MANAGE" to start adding criteria and options!</Typography>
-      </Container>
-      :
-      <Container>
-      <Typography mt={2} variant="h6">{`Welcome ${user}!`}</Typography>
-      <Typography mb={2}>You don't have any saved decisions yet. click "ADD NEW DECISION" to make your first!</Typography>
-      </Container>
+        <Container>
+        <Typography mt={2} variant="h6">{`Welcome ${user}! Your saved decisions are here:`}</Typography>
+        <Typography mb={2}>Click "MANAGE" to start adding criteria and options!</Typography>
+        </Container>
+        :
+        <Container>
+        <Typography mt={2} variant="h6">{`Welcome ${user}!`}</Typography>
+        <Typography mb={2}>You don't have any saved decisions yet. click "ADD NEW DECISION" to make your first!</Typography>
+        </Container>
       }
       <Container>
-      {quote && 
-        <Stack>
-          <Typography mt={2}>Your quote of the day:</Typography>
-          <Typography color="primary" variant="subtitle2"><i>
-            {quote.text}
-            </i></Typography>
-            <Typography mb={2} color="primary" variant="subtitle2">
-            {!quote.author ? `- Anonymous` : `- ${quote.author}`}
-            </Typography>
-          </Stack>}
-          </Container>
-        </Stack>
+        {quote && 
+          <Stack>
+            <Box ml={10}>
+            <Typography mt={2}>Your quote of the day:</Typography>
+            <Typography color="primary" variant="subtitle2"><i>
+              {quote.text}
+              </i></Typography>
+              <Typography mb={2} color="primary" variant="subtitle2">
+              {!quote.author ? `- Anonymous` : `- ${quote.author}`}
+              </Typography>
+              </Box>
+            </Stack>}
+        </Container>
+      </Stack>
         
 
      <Container>

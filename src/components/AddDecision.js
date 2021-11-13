@@ -36,7 +36,7 @@ const AddDecision = (props) => {
     {
       decision_text: decision
     })
-      .then(res => console.log(res)).then(setDecision("")).then(() => {
+      .then(res => res).then(setDecision("")).then(() => {
         setAdding(true)
         setTimeout(() =>
         history.goBack()

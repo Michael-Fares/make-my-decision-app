@@ -13,6 +13,7 @@ import ListOptions from './components/ListOptions'
 import AddOption from './components/AddOption'
 import Rankings from './components/Rankings'
 import EndScreen from './components/EndScreen'
+import NotFound from './components/NotFound'
 
 
 
@@ -47,7 +48,6 @@ const Router = () => {
             <Route exact path="/" component={About} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
-            {/* Protect this route */}
             <ProtectedRoute path="/decisions" component={ListDecisions} />
             <ProtectedRoute path="/add-decision" component={AddDecision} />
             <ProtectedRoute path="/add-criteria/for-decision/:id" component={AddCriteria} />
@@ -56,6 +56,7 @@ const Router = () => {
             <ProtectedRoute path="/add-option/for-decision/:id" component={AddOption} />
             <ProtectedRoute path="/rankings/for-decision/:id" component={Rankings} />
             <ProtectedRoute path="/results/for-decision/:id" component={EndScreen} />
+            <Route component={NotFound} />
         </Switch>
     );
 };

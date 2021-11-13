@@ -28,7 +28,6 @@ const ListOptions = (props) => {
   useEffect(() => {
     axios.get(`${url}/options/for-decision/${id}`)
       .then((res) => {
-        console.log("GET options response", res)
         setOptions(res.data)
       })
     }, [])

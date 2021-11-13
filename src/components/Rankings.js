@@ -38,7 +38,6 @@ const Rankings = (props) => {
   useEffect(() => {
     axios.get(`${url}/rankings/for-decision/${id}`)
       .then((res) => {
-        console.log(res)
         setRankings(res.data)
       })
     }, [])
@@ -80,13 +79,13 @@ const Rankings = (props) => {
                 axios.post(`${url}/rankings/for-option/${ranking.option_id}/on-criterion/${ranking.criterion_id}`, {
                   option_rank_on_criterion: Number(selectedOption)
                 })
-                  .then(res => console.log(res)).then(setSelectedOption("")).then(() => handleDelete(index))
+                  .then(res => res).then(setSelectedOption("")).then(() => handleDelete(index))
                   .catch(err => console.log(err))
                 } else {
                   axios.put(`${url}/rankings/for-option/${ranking.option_id}/on-criterion/${ranking.criterion_id}`, {
                   option_rank_on_criterion: Number(selectedOption)
                 })
-                  .then(res => console.log(res)).then(setSelectedOption("")).then(() => handleDelete(index))
+                  .then(res => res).then(setSelectedOption("")).then(() => handleDelete(index))
                   .catch(err => console.log(err))
                 }
                 setSubmitted(true)
