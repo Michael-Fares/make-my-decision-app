@@ -4,7 +4,9 @@ import {
   TextField,
   Box,
   Typography,
-  Stack
+  Stack,
+  CircularProgress,
+  Container
  } from "@mui/material";
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -18,6 +20,8 @@ const Login = () => {
     email: "",
     password: ""
   })
+
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -41,6 +45,7 @@ const Login = () => {
       password: user.password,
     })
     .then(function (response) {
+      setLoading(true)
    
       // set current user info in local storage
    
@@ -72,6 +77,8 @@ const Login = () => {
   }
 
   return (
+  <>
+    {!loading ?
       <form className="form" onSubmit={handleSubmit}>
           <Box mb={2}>
             <Typography variant="h5">Welcome! Please Login</Typography>
@@ -91,8 +98,16 @@ const Login = () => {
           <Box mt={4}>
           <Typography>Don't have an account yet? <Link to='/signup'><span className="link-span">Sign up!</span></Link>
             </Typography>
+          </Box> 
+      </form> 
+      : 
+        <Stack  alignItems="center" justifyContent="center">
+          <Box mt={25}>
+            <CircularProgress />
           </Box>
-      </form>
+        </Stack>
+      }
+  </>
   )
 }
 

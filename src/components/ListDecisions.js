@@ -19,7 +19,10 @@ const ListDecisions = () => {
   useEffect(() => {
     const id = localStorage.getItem('id')
     axios.get(`${url}/decisions/for-user/${id}`)
-      .then((res) => setDecisions(res.data));
+      .then((res) => {
+        console.log('GET Decisions', res)
+        setDecisions(res.data)
+      });
     // The array is called a dependecy array
   }, []);
 

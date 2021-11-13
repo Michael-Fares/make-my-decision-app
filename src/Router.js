@@ -29,7 +29,6 @@ console.log("value of check auth function", checkAuth())
 
 const ProtectedRoute = ({component: Component, ...rest}) => {
     // ... rest just signifies the rest of the attributes passed into the Route
-    console.log("rest", rest)
     return (
       <Route
       {...rest}

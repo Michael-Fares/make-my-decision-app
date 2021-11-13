@@ -24,6 +24,7 @@ const ListCriteria = (props) => {
   useEffect(() => {
     axios.get(`${url}/criteria/for-decision/${id}`)
       .then((res) => {
+        console.log("GET criteria response",res)
         const rawCriteria = res.data
         const qualitativeCriteria = rawCriteria.map(criterion => {
           if(criterion.criterion_importance === 5) {

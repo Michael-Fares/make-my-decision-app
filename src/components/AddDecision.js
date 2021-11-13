@@ -6,7 +6,8 @@ import {
   Box,
   Typography,
   Stack,
-  Paper
+  Paper,
+  LinearProgress
  } from "@mui/material";
 import { useHistory } from 'react-router-dom'
 
@@ -20,28 +21,36 @@ const AddDecision = (props) => {
   let history = useHistory();
 
   const [decision, setDecision] = useState("")
+  const [adding, setAdding] = useState(false)
 
   const handleChange = (e) => {
-    e.preventDefault(e)
+    e.preventDefault()
     setDecision(e.target.value)
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault(e)
+    e.preventDefault()
 
 
     axios.post(`${url}/decisions`, 
     {
       decision_text: decision
     })
-      .then(res => res).then(setDecision("")).then(history.goBack())
+      .then(res => console.log(res)).then(setDecision("")).then(() => {
+        setAdding(true)
+        setTimeout(() =>
+        history.goBack()
+        ,1000)
+      }
+        )
       .catch(err => console.log('there was an error', err))
 
     
   }
 
   return (
-      <form className="form" >
+    <>
+      {!adding ? <form className="form" onSubmit={(e) => handleSubmit(e)}>
         <Paper elevation={4} style={{padding: "30px"}}>
           <Box mb={2}>
             <Typography variant="h6">What Decision Would You Help Making?</Typography>
@@ -53,13 +62,22 @@ const AddDecision = (props) => {
             variant="contained"
             className="form-margin"
             type="submit"
-            onMouseDown={handleSubmit}
             >
             Add
           </Button>
           </Stack>
         </Paper>
-      </form>
+      </form> : 
+      <Stack  alignItems="center" justifyContent="center">
+        <Box mt={25} sx={{width: "80%"}}>
+          <Stack alignItems="center" justifyContent="center">
+            <Typography mb={2} variant="h4" color="primary">Adding Decision!</Typography>
+          </Stack>
+              <LinearProgress />
+          </Box>
+      </Stack>
+      }
+    </>
   )
 }
 

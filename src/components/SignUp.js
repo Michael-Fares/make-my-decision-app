@@ -4,7 +4,9 @@ import {
   TextField,
   Typography,
   Stack,
-  Divider
+  Divider,
+  Box,
+  CircularProgress
  } from "@mui/material";
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios';
@@ -23,6 +25,7 @@ const SignUp = () => {
     confirmPassword: ""
   }
   )
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -66,7 +69,8 @@ const SignUp = () => {
   }
 
   return (
-      <form className="form" onSubmit={handleSubmit}>
+    <>
+      {!loading ? <form className="form" onSubmit={handleSubmit}>
         <Stack spacing={1}>
         <Stack direction="row" spacing={1} alignItems="center" justifyContent="space-evenly">
           <Typography mb={2} variant="h5">Sign Up</Typography>
@@ -86,7 +90,15 @@ const SignUp = () => {
             Sign Up!
           </Button>
           </Stack>
-      </form>
+      </form> 
+      : 
+        <Stack  alignItems="center" justifyContent="center">
+            <Box mt={25}>
+              <CircularProgress />
+            </Box>
+          </Stack>
+      }
+    </>
   )
 }
 
