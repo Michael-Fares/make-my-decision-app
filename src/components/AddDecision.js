@@ -53,7 +53,7 @@ const AddDecision = (props) => {
       {!adding ? <form className="form" onSubmit={(e) => handleSubmit(e)}>
         <Paper elevation={4} style={{padding: "30px"}}>
           <Box mb={2}>
-            <Typography variant="h6">What Decision Would You Help Making?</Typography>
+            <Typography variant="h6">What decision would you like help making?</Typography>
           </Box>
           
         <Stack spacing={3}>
