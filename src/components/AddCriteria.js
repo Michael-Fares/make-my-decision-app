@@ -16,7 +16,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWeightHanging } from "@fortawesome/free-solid-svg-icons";
 
-const url = "https://make-my-decision.herokuapp.com"
+const url = "https://make-my-decision-server.fly.dev"
 
 const AddCriteria = (props) => {
     const history = useHistory()

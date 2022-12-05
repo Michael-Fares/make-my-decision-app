@@ -12,7 +12,7 @@ import {
  import { useHistory } from 'react-router-dom'
  import axios from 'axios'
 
-const url = "https://make-my-decision.herokuapp.com"
+const url = "https://make-my-decision-server.fly.dev"
 
 const AddOption = (props) => {
   const history = useHistory()

@@ -12,7 +12,7 @@ import {
 } from '../math.js'
 import { Doughnut, Bar } from 'react-chartjs-2';
 
-const url = "https://make-my-decision.herokuapp.com"
+const url = "https://make-my-decision-server.fly.dev"
 
 
 

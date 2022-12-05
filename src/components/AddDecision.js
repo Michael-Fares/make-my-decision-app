@@ -15,7 +15,7 @@ const token = localStorage.getItem('token')
 
 axios.defaults.headers.common['authorization'] = `Bearer ${token}`;
 
-const url = "https://make-my-decision.herokuapp.com" 
+const url = "https://make-my-decision-server.fly.dev" 
 
 const AddDecision = (props) => {
   let history = useHistory();

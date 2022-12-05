@@ -7,7 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import axios from 'axios'
-const url = "https://make-my-decision.herokuapp.com"
+const url = "https://make-my-decision-server.fly.dev"
 
 const ListDecisions = () => {
   const user = localStorage.getItem('name')

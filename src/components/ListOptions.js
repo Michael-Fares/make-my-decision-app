@@ -8,7 +8,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
-const url = "https://make-my-decision.herokuapp.com"
+const url = "https://make-my-decision-server.fly.dev"
 
 const ListOptions = (props) => {
   const history = useHistory()

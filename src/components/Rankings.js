@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom'
 
 import DoubleArrowSharpIcon from '@mui/icons-material/DoubleArrowSharp';
 
-const url = "https://make-my-decision.herokuapp.com"
+const url = "https://make-my-decision-server.fly.dev"
 
 const Rankings = (props) => {
   const currentDecision = props.location.state.currentDecision
